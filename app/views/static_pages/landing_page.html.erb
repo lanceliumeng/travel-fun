@@ -1,4 +1,9 @@
 <h1>StaticPages#landing_page</h1>
 <p>Welcome to home page</p>
 
-<%= link_to 'Privacy Policy Page', privacy_policy_path %>
+
+<%# privacy policy page button and fontasesome icons %>
+<%= link_to privacy_policy_path do %>  
+<i class="fas fa-cog fa-spin fa-3x"></i>
+Privacy Policy
+<% end %>
