@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# random db for first test:
+30.times do 
+    Product.create(
+        title: Faker::FunnyName.three_word_name,
+        description: Faker::TvShows::AquaTeenHungerForce.quote
+    )
+end
