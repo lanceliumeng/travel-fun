@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :products
   #home page
   root 'static_pages#landing_page'
 
