@@ -13,13 +13,21 @@
   <body>
    <%# navbar partial %>
     <%= render 'shared/nav'%>
+
     <%# header partial for users varify %>
     <%= render 'shared/header'%>
-    <%# start: devise default set %>
-    <p class='notice'> <%= notice %> </p>
-    <p class='alert'> <%= alert %> </p>
+
+    <%# flash msg partial for notification messages %>
+    <%= render 'layouts/messages' %>
+
+    <%# above msg flash provides same thing %>
+    <%# start: devise default set%>  
+    <%#<p class='notice'> <%#= notice %> </p>
+    <p class='alert'> <%#= alert %> </p>
     <%# end: devise default set %>
+
     <%= yield %>
+
     <%# footer partial %>
     <%= render 'shared/footer'%>
   </body>
