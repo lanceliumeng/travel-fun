@@ -26,9 +26,10 @@
         </li>
       </ul>
       <div class="form-inline my-2 my-lg-0">
-        <%= form_tag(root_path, method: :get) do %>
+      <%# below is search function front end, please find the controller action at products_controller.rb file %>
+        <%= form_tag(products_path, method: :get) do %>
           <div class="input-group">
-            <%= text_field_tag :name, params[:name], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm' %>
+            <%= text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Find your favorite trip", class: 'form-control-sm' %>
             <span class="input-group-append">
               <button class="btn btn-primary btn-sm" type="submit">
                 <span aria-hidden="true" class="fa fa-search"></span>
@@ -77,7 +78,7 @@
 </nav>
 
 
-<%# here was my code to check if user log in and I use them + bootstrap as above %>
+<%# here was my code to check if user log in, I commented code below because I used them + bootstrap as above codes %>
 <%# check if user login then display account settings and sign out link %>
 <%# <if current_user %>
     <%# current_user.email %>

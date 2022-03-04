@@ -1,9 +1,20 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
-  # GET /products or /products.json
+  # index action, products_path will show all products to browser.
   def index
-    @products = Product.all
+    # for search function, eg: users typed tas for searching,
+    # in my server, GET "/products?search_title=tas" for 127.0.0.1,  Parameters: {"title"=>"tas"}, back end will check the DB:
+    # SELECT "products".* FROM "products" WHERE (lower(title) LIKE '%tas%'), if it can find sth match, then display match things to front end views
+    # else, display all products at views
+    if params[:title]
+      # The lower() method converts the field on the database side to lowercase.
+      # Calling params[:title].downcase converts the provided search term to lowercase also.
+      # Array conditions prevent SQL injection in Active Record.
+      @products = Product.where("lower(title) LIKE ?", "%#{params[:title].downcase}%")
+    else
+      @products = Product.all
+    end
   end
 
   # GET /products/1 or /products/1.json
