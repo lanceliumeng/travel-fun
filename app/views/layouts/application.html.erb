@@ -11,24 +11,33 @@
   </head>
 
   <body>
-   <%# navbar partial %>
+    <%# navbar partial: navbar bootstrap format + ruby logic to check current_user and current_page %>
     <%= render 'shared/nav'%>
 
-    <%# header partial for users varify %>
-    <%= render 'shared/header'%>
-
     <%# flash msg partial for notification messages %>
-    <%= render 'layouts/messages' %>
+    <%= render 'shared/messages' %>
 
-    <%# above msg flash provides same thing %>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <%# footer partial %>
+    <%= render 'shared/footer'%>
+  
+  </body>
+</html>
+
+<%# comment 01 start %>
+  <%# above flash msg provides same thing, so I commented below codes %>
     <%# start: devise default set%>  
     <%#<p class='notice'> <%#= notice %> </p>
     <p class='alert'> <%#= alert %> </p>
     <%# end: devise default set %>
+<%# comment 01 end %>
 
-    <%= yield %>
-
-    <%# footer partial %>
-    <%= render 'shared/footer'%>
-  </body>
-</html>
+<%# comment 02 start %>
+   <%# I have put partial header code in above shared/nav %>
+  <%# so I deleted the partial header file but you can check the original code in nav file %>
+    <%# header partial for users varify %>
+    <%# render 'shared/header'  %>
+<%# comment 02 end %>
