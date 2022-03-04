@@ -6,10 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# create devise user for testing
+User.create(email:'admin@test.com', password:'coolguy', password_confirmation:'coolguy')
+
+
 # random db for first test:
 30.times do 
     Product.create(
         title: Faker::FunnyName.three_word_name,
-        description: Faker::TvShows::AquaTeenHungerForce.quote
+        description: Faker::TvShows::AquaTeenHungerForce.quote,
+        user_id: User.first.id
     )
 end

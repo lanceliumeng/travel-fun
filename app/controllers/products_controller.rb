@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
+    @product.user = current_user   #=> when we create new product, it will belongs to the current user account
 
     respond_to do |format|
       if @product.save
