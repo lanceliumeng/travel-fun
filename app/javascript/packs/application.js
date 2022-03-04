@@ -13,3 +13,9 @@ import "@fortawesome/fontawesome-free/css/all";
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+
+// application.js
+// import "trix"
+// import "@rails/actiontext"
+require("trix")
+require("@rails/actiontext")

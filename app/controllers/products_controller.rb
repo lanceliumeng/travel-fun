@@ -22,8 +22,10 @@ class ProductsController < ApplicationController
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
-    @product.user = current_user   #=> when we create new product, it will belongs to the current user account
 
+    #=> start: we have created a relationship between the user model and product model
+    @product.user = current_user   
+    #=> end: when we create new product, it will automatically belongs to the current user account
     respond_to do |format|
       if @product.save
         format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
