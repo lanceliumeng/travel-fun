@@ -72,9 +72,9 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # use friendly_id gem to replace default .find
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -8,4 +8,8 @@ class Product < ApplicationRecord
     def to_s
         title
     end
+    
+    # for firendly_id gem usage
+    extend FriendlyId
+    friendly_id :title, use: :slugged
 end
