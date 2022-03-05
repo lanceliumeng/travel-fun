@@ -26,6 +26,17 @@
     <%= render 'shared/footer'%>
   
   </body>
+ <%# typed.js CDN and script tag for landing_page (home page) %>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+      var typed = new Typed(".mov",{
+        strings: [,  "Start A New Journey ?","Explore Some Adventures ?","A Spur-Of-The-Moment Trip ?"] ,
+        typeSpeed: 100,
+        backSpeed: 100,
+        loop: true
+
+      })
+    </script>
 </html>
 
 <%# comment 01 start %>
