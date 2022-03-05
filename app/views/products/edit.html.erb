@@ -1,6 +1,14 @@
-<h1>Editing Product</h1>
 
-<%= render 'form', product: @product %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<div class="card mt-3">
+  <div class="card-header">
+    <h1>Editing Trip</h1>
+  </div>
+  
+  <div class="card-body">
+    <%= render 'form', product: @product %>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Show', @product %> |
+    <%# I add below path in case when user in edit page, click back button will not go to listing page, I want them can go to the exactly product page %>
+    <%= link_to 'Back', product_path(params[:id]) %>
+  </div>

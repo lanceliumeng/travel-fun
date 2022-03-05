@@ -1,15 +1,100 @@
-<h1>Let's start a new journey....</h1>
-<p>Welcome to home page</p>
+
+<%# bootstrap jumbotron format %>
+<div class="jumbotron mt-3">
+  <h1 class="display-4">Welcome Traveller</h1>
+  <p class="lead">Do you prepare to start a new journey?</p>
+  <hr class="my-4">
+  <div class="form-inline my-2 my-lg-0">
+      <%# below is search function front end, please find the controller action at products_controller.rb file %>
+        <%= form_tag(products_path, method: :get) do %>
+          <div class="input-group">
+            <%= text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Find your favorite trip", class: 'form-control-sm' %>
+            <span class="input-group-append">
+              <button class="btn btn-primary btn-sm" type="submit">
+                <span aria-hidden="true" class="fa fa-search"></span>
+              </button>
+            </span>
+          </div>
+        <% end %>
+      </div>
+</div>
+
+<%# for bootstrap card group format %>
+<div class="card-group">
+  <%# card body 01 - Porpular Trips %>
+  <div class="card card-body">
+        <h1 class="text-warning">
+            <i class="fa-solid fa-compass"></i>
+        </h1>
+        <div class="card-text">
+            <b><%= Product.count %> Porpular Trips </b>
+        </div>
+        <div class="card-text">
+            Let's explore a variety of trips
+        </div>
+  </div>
+  <%# card body 02 - Professional Trip Designer %>
+  <div class="card card-body">
+        <h1 class="text-info">
+           <i class="fa-solid fa-user-tie"></i>
+        </h1>
+        <div class="card-text">
+            <b><%= Product.distinct.count(:user_id) %> Professional Trip Designer </b>
+        </div>
+        <div class="card-text">
+            Find the right trip only for you
+        </div>
+  </div>
+  <%# card body 03 - Active Users %>
+   <div class="card card-body">
+        <h1 class="text-success">
+           <i class="fa-solid fa-users"></i>
+        </h1>
+        <div class="card-text">
+            <b><%= User.count %> Active Users</b>
+        </div>
+        <div class="card-text">
+            Welcome to join our traveller and designer community
+        </div>
+  </div>
+  <%# card body 04 - Adventure Explore Tasmania %>
+   <div class="card card-body">
+        <h1 class="text-primary">
+            <i class="fa-solid fa-earth-oceania"></i>
+        </h1>
+        <div class="card-text">
+            <b>Adventure Explore Tasmania</b>
+        </div>
+        <div class="card-text">
+            by your professional trip designer
+        </div>
+  </div>
+  
+</div>
 
 
-<%# privacy policy page button and fontasesome icons %>
-<%= link_to privacy_policy_path do %>  
-<i class="fas fa-cog fa-spin fa-3x"></i>
-Privacy Policy
-<% end %>
-
-<%# products page button and fontasesome icons %>
-<%= link_to products_path, class:'btn btn-success' do %>  
-<i class="far fa-gem "></i>
-Products
-<% end %>
+<%# for 3 trips sections %>
+<hr class="my-4">
+<h2> Popular Trips </h2>
+<div class="card-columns">
+   <%# use ruby each method to list each product in card format %>
+  <% @products.each do |product| %>
+    <%= render 'products/product', product: product %>
+  <% end %>
+</div>
+<hr class="my-4">
+<h2> Top Rated Trips </h2>
+<div class="card-columns">
+   <%# use ruby each method to list each product in card format %>
+  <% @products.each do |product| %>
+    <%= render 'products/product', product: product %>
+  <% end %>
+</div>
+<hr class="my-4">
+<h2> New Trips </h2>
+<div class="card-columns">
+   <%# use ruby each method to list each product in card format %>
+  <% @new_products.each do |new_product| %>
+    <%= render 'products/product', product: new_product %>
+  <% end %>
+</div>

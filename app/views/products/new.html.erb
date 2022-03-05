@@ -1,5 +1,16 @@
-<h1>New Product</h1>
+<%# bootstrap format for new page %>
+<div class="card mt-3">
 
-<%= render 'form', product: @product %>
+  <div class="card-header">
+    <h1>New Trip</h1>
+  </div>
 
-<%= link_to 'Back', products_path %>
+  <div class="card-body"> 
+    <%= render 'form', product: @product %>
+  </div>
+
+  <div class="card-footer">
+    <%= link_to 'Back', products_path %>
+  </div>
+
+</div>

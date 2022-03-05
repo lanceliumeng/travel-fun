@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     if params[:title]
       # The lower() method converts the field on the database side to lowercase.
       # Calling params[:title].downcase converts the provided search term to lowercase also.
-      # Array conditions prevent SQL injection in Active Record.
+      # Array conditions prevent SQL injection in Active Record (sanitize).
       @products = Product.where("lower(title) LIKE ?", "%#{params[:title].downcase}%")
     else
       @products = Product.all
