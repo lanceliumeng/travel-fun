@@ -18,16 +18,16 @@
             Home
           <% end %>
         </li>
-        <%# link to product list page %>
-        <li class="<%= 'active font-weight-bold' if current_page?(products_path) %> nav-item">
-          <%= link_to products_path, class: 'nav-link' do %>
+        <%# link to trip list page %>
+        <li class="<%= 'active font-weight-bold' if current_page?(trips_path) %> nav-item">
+          <%= link_to trips_path, class: 'nav-link' do %>
             <div class="fa-solid fa-suitcase"></div> 
             Trips
           <% end %>
         </li>
-        <%# link to add new product page %>
-        <li class="<%= 'active font-weight-bold' if current_page?(new_product_path) %> nav-item">
-          <%= link_to new_product_path, class: 'nav-link' do %>
+        <%# link to add new trip page %>
+        <li class="<%= 'active font-weight-bold' if current_page?(new_trip_path) %> nav-item">
+          <%= link_to new_trip_path, class: 'nav-link' do %>
             <div class="fa-solid fa-location-arrow"></div>
             New Trip
           <% end %>
@@ -35,8 +35,8 @@
       </ul>
 
       <div class="form-inline my-2 my-lg-0">
-      <%# below is search function front end, please find the controller action at products_controller.rb file %>
-        <%= form_tag(products_path, method: :get) do %>
+      <%# below is search function front end, please find the controller action at trips_controller.rb file %>
+        <%= form_tag(trips_path, method: :get) do %>
           <div class="input-group">
             <%= text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Find your favorite trip", class: 'form-control-sm' %>
             <span class="input-group-append">

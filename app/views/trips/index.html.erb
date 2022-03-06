@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Trips: <%= @trips.count%></h1>
+
+<div class="card-columns">
+   <%# use ruby each method to list each trip in card format %>
+  <% @trips.each do |trip| %>
+    <%= render 'trips/trip', trip: trip %>
+  <% end %>
+</div>
+
+
+

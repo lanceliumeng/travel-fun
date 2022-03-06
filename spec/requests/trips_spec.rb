@@ -12,10 +12,10 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/products", type: :request do
+RSpec.describe "/trips", type: :request do
   
   # This should return the minimal set of attributes required to create a valid
-  # Product. As you add validations to Product, be sure to
+  # trip. As you add validations to trip, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -27,58 +27,58 @@ RSpec.describe "/products", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Product.create! valid_attributes
-      get products_url
+      Trip.create! valid_attributes
+      get trips_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      product = Product.create! valid_attributes
-      get product_url(product)
+      trip = Trip.create! valid_attributes
+      get trip_url(trip)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_product_url
+      get new_trip_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "renders a successful response" do
-      product = Product.create! valid_attributes
-      get edit_product_url(product)
+      trip = Trip.create! valid_attributes
+      get edit_trip_url(trip)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Product" do
+      it "creates a new trip" do
         expect {
-          post products_url, params: { product: valid_attributes }
-        }.to change(Product, :count).by(1)
+          post trips_url, params: { trip: valid_attributes }
+        }.to change(Trip, :count).by(1)
       end
 
-      it "redirects to the created product" do
-        post products_url, params: { product: valid_attributes }
-        expect(response).to redirect_to(product_url(Product.last))
+      it "redirects to the created trip" do
+        post trips_url, params: { trip: valid_attributes }
+        expect(response).to redirect_to(trip_url(Trip.last))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Product" do
+      it "does not create a new trip" do
         expect {
-          post products_url, params: { product: invalid_attributes }
-        }.to change(Product, :count).by(0)
+          post trips_url, params: { trip: invalid_attributes }
+        }.to change(Trip, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post products_url, params: { product: invalid_attributes }
+        post trips_url, params: { trip: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -90,42 +90,42 @@ RSpec.describe "/products", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested product" do
-        product = Product.create! valid_attributes
-        patch product_url(product), params: { product: new_attributes }
-        product.reload
+      it "updates the requested trip" do
+        trip = Trip.create! valid_attributes
+        patch trip_url(trip), params: { trip: new_attributes }
+        trip.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the product" do
-        product = Product.create! valid_attributes
-        patch product_url(product), params: { product: new_attributes }
-        product.reload
-        expect(response).to redirect_to(product_url(product))
+      it "redirects to the trip" do
+        trip = Trip.create! valid_attributes
+        patch trip_url(trip), params: { trip: new_attributes }
+        trip.reload
+        expect(response).to redirect_to(trip_url(trip))
       end
     end
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        product = Product.create! valid_attributes
-        patch product_url(product), params: { product: invalid_attributes }
+        trip = Trip.create! valid_attributes
+        patch trip_url(trip), params: { trip: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested product" do
-      product = Product.create! valid_attributes
+    it "destroys the requested trip" do
+      trip = Trip.create! valid_attributes
       expect {
-        delete product_url(product)
-      }.to change(Product, :count).by(-1)
+        delete trip_url(trip)
+      }.to change(Trip, :count).by(-1)
     end
 
-    it "redirects to the products list" do
-      product = Product.create! valid_attributes
-      delete product_url(product)
-      expect(response).to redirect_to(products_url)
+    it "redirects to the trips list" do
+      trip = Trip.create! valid_attributes
+      delete trip_url(trip)
+      expect(response).to redirect_to(trips_url)
     end
   end
 end

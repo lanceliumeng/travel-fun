@@ -6,8 +6,8 @@
   <p class="lead font-weight-bold font-italic text-primary">Do you prepare to <span class="mov"> </span> </p>
   <hr class="my-4">
   <div class="form-inline my-2 my-lg-0">
-      <%# below is search function front end, please find the controller action at products_controller.rb file %>
-        <%= form_tag(products_path, method: :get) do %>
+      <%# below is search function front end, please find the controller action at trips_controller.rb file %>
+        <%= form_tag(trips_path, method: :get) do %>
           <div class="input-group">
             <%= text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Find your favorite trip", class: 'form-control-sm' %>
             <span class="input-group-append">
@@ -28,7 +28,7 @@
             <i class="fa-solid fa-compass"></i>
         </h1>
         <div class="card-text">
-            <b><%= Product.count %> Porpular Trips </b>
+            <b><%= Trip.count %> Porpular Trips </b>
         </div>
         <div class="card-text">
             Let's explore a variety of trips
@@ -40,7 +40,7 @@
            <i class="fa-solid fa-user-tie"></i>
         </h1>
         <div class="card-text">
-            <b><%= Product.distinct.count(:user_id) %> Professional Trip Designer </b>
+            <b><%= Trip.distinct.count(:user_id) %> Professional Trip Designer </b>
         </div>
         <div class="card-text">
             Find the right trip only for you
@@ -78,24 +78,24 @@
 <hr class="my-4">
 <h2> Popular Trips </h2>
 <div class="card-columns">
-   <%# use ruby each method to list each product in card format %>
-  <% @products.each do |product| %>
-    <%= render 'products/product', product: product %>
+   <%# use ruby each method to list each trip in card format %>
+  <% @trips.each do |trip| %>
+    <%= render 'trips/trip', trip: trip %>
   <% end %>
 </div>
 <hr class="my-4">
 <h2> Top Rated Trips </h2>
 <div class="card-columns">
-   <%# use ruby each method to list each product in card format %>
-  <% @products.each do |product| %>
-    <%= render 'products/product', product: product %>
+   <%# use ruby each method to list each trip in card format %>
+  <% @trips.each do |trip| %>
+    <%= render 'trips/trip', trip: trip %>
   <% end %>
 </div>
 <hr class="my-4">
 <h2> New Trips </h2>
 <div class="card-columns">
-   <%# use ruby each method to list each product in card format %>
-  <% @new_products.each do |new_product| %>
-    <%= render 'products/product', product: new_product %>
+   <%# use ruby each method to list each trip in card format %>
+  <% @new_trips.each do |new_trip| %>
+    <%= render 'trips/trip', trip: new_trip %>
   <% end %>
 </div>

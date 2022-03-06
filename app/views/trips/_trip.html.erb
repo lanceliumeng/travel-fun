@@ -1,0 +1,34 @@
+<%# this is partial _trips veiw + bootstrap card format %>
+
+<div class="card">
+  <%# each img for travel trip %>
+  <%# <img class="card-img-top" src="..." alt="Card image cap">    %>
+
+     <%# each trip title is card header  %>
+    <div class="card-header">
+      <div class="fa-solid fa-bus"></div>
+        <%= link_to trip.title, trip_path(trip) %>
+    </div>
+
+    <%# each trip description is card body  %>
+    <div class="card-body">
+      <%= trip.description %>
+    </div>
+
+    <%# each trip created time and user is card footer  %>
+    <div class="card-footer">
+      <div class="far fa-clock"></div>
+      <%= trip.created_at.strftime('%d-%b-%Y') %>
+      <div class="row"></div>
+      <div class="fa-solid fa-user-astronaut"></div>
+      <%= trip.user %>
+    </div>
+
+    <%# each trip links are card footer as well  %>
+    <div class="card-footer">
+    <%= link_to 'Show', trip, class: 'btn btn-sm btn-success' %>
+    <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-sm btn-info' %>
+    <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+    </div>
+
+</div>

@@ -1,20 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe "products/index", type: :view do
+RSpec.describe "trips/index", type: :view do
   before(:each) do
-    assign(:products, [
-      Product.create!(
+    assign(:trips, [
+      Trip.create!(
         title: "Title",
         description: "MyText"
       ),
-      Product.create!(
+      Trip.create!(
         title: "Title",
         description: "MyText"
       )
     ])
   end
 
-  it "renders a list of products" do
+  it "renders a list of trips" do
     render
     assert_select "tr>td", text: "Title".to_s, count: 2
     assert_select "tr>td", text: "MyText".to_s, count: 2

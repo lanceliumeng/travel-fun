@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "products/show", type: :view do
+RSpec.describe "trips/show", type: :view do
   before(:each) do
-    @product = assign(:product, Product.create!(
+    @trip = assign(:trip, Trip.create!(
       title: "Title",
       description: "MyText"
     ))

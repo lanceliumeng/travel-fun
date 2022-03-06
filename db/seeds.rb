@@ -12,7 +12,7 @@ User.create(email:'admin@test.com', password:'coolguy', password_confirmation:'c
 
 # random db for first test:
 30.times do 
-    Product.create(
+    Trip.create(
         title: Faker::FunnyName.three_word_name,
         description: Faker::TvShows::AquaTeenHungerForce.quote,
         user_id: User.first.id

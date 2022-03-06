@@ -6,5 +6,5 @@ class User < ApplicationRecord
    def to_s
       email
    end
-  has_many :products
+  has_many :trips
 end

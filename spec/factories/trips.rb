@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :product do
+  factory :trip do
     title { "MyString" }
     description { "MyText" }
   end

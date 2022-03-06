@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :products
+  resources :trips
 
   #home page
   root 'static_pages#landing_page'

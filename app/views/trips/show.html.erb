@@ -1,0 +1,11 @@
+<%# show page will display each trip details %>
+<div class="container mt-3">
+<%= link_to 'Travel Plans', trips_path %>
+\
+<%# icon + boostrap color %>
+<i class="fa-solid fa-map-location-dot text-info"></i>
+<%= link_to @trip.title, trip_path(@trip) %> 
+<p></p>
+<%# render partial page trip for exactly trip %>
+<%= render 'trips/trip', trip: @trip %>
+</div>
