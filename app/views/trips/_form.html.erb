@@ -14,8 +14,12 @@
     <%# end: for action text form view %>
 
      <%= f.input :brief_info %>
-     <%= f.input :language, collection: ["English","Chinese-Simplified","Chinese-Traditional","Korean","Japanese",] %>
-     <%= f.input :duration, collection: ["5-Days-4-Nights","4-Days-3-Nights","3-Days-2-Nights","1-Day"] %>
+     <%# collection: ["English", "Chinese(Simplified)", "Chinese(Traditional)", "Korean", "Japanese"] %>
+     <%# include_blank allows blank area when we creating new trip, more flexable %>
+     <%= f.input :language, collection: Trip.languages, include_blank: true %>
+
+     <%# collection: :"5-Days-4-Nights", :"4-Days-3-Nights", :"3-Days-2-Nights", :"1-Day"%>
+     <%= f.input :duration, collection: Trip.durations, include_blank: true %>
      <%= f.input :price %>
 
   </div>

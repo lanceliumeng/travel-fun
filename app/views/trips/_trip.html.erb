@@ -39,7 +39,8 @@
       Created at: <%= trip.created_at.strftime('%d-%b-%Y') %>
       <div class="row"></div>
       <div class="fa-solid fa-user-astronaut"></div>
-      Created by: <%= trip.user %>
+      <%# .username is method in user model, cam makes website more readable %>
+      Created by: <%= trip.user.username %> 
     </div>
 
     <%# each trip links are card footer as well  %>

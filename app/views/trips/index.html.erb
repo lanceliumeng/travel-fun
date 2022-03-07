@@ -2,6 +2,7 @@
 
 <h1>Listing Trips: <%= @trips.count%></h1>
 
+<%# search_form by ransack gem  %>
 <div class="row">
   <div class="col-md-2">
     <%= search_form_for @q do |f| %>
@@ -9,18 +10,23 @@
       <%= f.label :title %>
       <%= f.search_field :title_cont, placeholder: 'Title', class: 'form-control form-control-sm' %>
      
-      <%= f.label :description %>
-      <%= f.search_field :description_cont, placeholder: 'Description', class: 'form-control form-control-sm' %>
+      <%= f.label :brief_info %>
+      <%= f.search_field :brief_info_cont, placeholder: 'Information', class: 'form-control form-control-sm' %>
       
       <%= f.label :language %>
-      <%= f.select :language_cont, include_blank: true %>
-     
-      <%= f.label :duration %>
-      <%= f.select :duration_cont, include_blank: true %>
+      <%# f.select :language_cont,"English","Chinese-Simplified","Chinese-Traditional","Korean","Japanese",, include_blank: true, class: 'form-control form-control-sm' %>
+      <%# include_blank allows blank area for searthing, more flexable %>
+      <%= f.select :language_cont, Trip.languages,include_blank: true %>
       
+      <%= f.label :duration %>
+      <%# f.select :duration_cont,["5-Days-4-Nights","4-Days-3-Nights","3-Days-2-Nights","1-Day"], include_blank: true, class: 'form-control form-control-sm' %>
+      <%= f.select :duration_cont, Trip.durations,include_blank: true %>
+
       <%= f.label :price %>
       <%= f.search_field :price_eq, placeholder: 'Price', class: 'form-control form-control-sm' %>
       
+      <%# here actually will search users email, but I give it label is Operator, when I create users role, this search bar can let client searching travel plan by operator's username %>
+      <%= f.label :Operator %>
       <%= f.search_field :user_email_cont, placeholder: 'Email', class: 'form-control form-control-sm' %>
       
       <%= f.submit %>
@@ -46,4 +52,4 @@
   <%# @trips.each do |trip| %>
     <%# render 'trips/trip', trip: trip %>
   <%#end %>
-</div> %>
+</div>
