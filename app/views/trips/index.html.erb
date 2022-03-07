@@ -2,12 +2,48 @@
 
 <h1>Listing Trips: <%= @trips.count%></h1>
 
-<div class="card-columns">
-   <%# use ruby each method to list each trip in card format %>
-  <% @trips.each do |trip| %>
-    <%= render 'trips/trip', trip: trip %>
-  <% end %>
+<div class="row">
+  <div class="col-md-2">
+    <%= search_form_for @q do |f| %>
+
+      <%= f.label :title %>
+      <%= f.search_field :title_cont, placeholder: 'Title', class: 'form-control form-control-sm' %>
+     
+      <%= f.label :description %>
+      <%= f.search_field :description_cont, placeholder: 'Description', class: 'form-control form-control-sm' %>
+      
+      <%= f.label :language %>
+      <%= f.select :language_cont, include_blank: true %>
+     
+      <%= f.label :duration %>
+      <%= f.select :duration_cont, include_blank: true %>
+      
+      <%= f.label :price %>
+      <%= f.search_field :price_eq, placeholder: 'Price', class: 'form-control form-control-sm' %>
+      
+      <%= f.search_field :user_email_cont, placeholder: 'Email', class: 'form-control form-control-sm' %>
+      
+      <%= f.submit %>
+    <% end %>
+    <%= link_to 'refresh', trips_path %>
+  </div>
+
+  <div class="col-md-10">
+    <div class="card-columns">
+    <%# use ruby each method to list each trip in card format %>
+      <% @trips.each do |trip| %>
+        <%= render 'trips/trip', trip: trip %>
+      <% end %>
+    </div>
+  </div>
+
 </div>
+<br/>
 
 
-
+<%# <div class="card-columns">  changed the layout, so comments this one
+   <%# use ruby each method to list each trip in card format %>
+  <%# @trips.each do |trip| %>
+    <%# render 'trips/trip', trip: trip %>
+  <%#end %>
+</div> %>

@@ -7,14 +7,17 @@ class TripsController < ApplicationController
     # in my server, GET "/trips?search_title=tas" for 127.0.0.1,  Parameters: {"title"=>"tas"}, back end will check the DB:
     # SELECT "trips".* FROM "trips" WHERE (lower(title) LIKE '%tas%'), if it can find sth match, then display match things to front end views
     # else, display all trips at views
-    if params[:title]
+    # if params[:title]
       # The lower() method converts the field on the database side to lowercase.
       # Calling params[:title].downcase converts the provided search term to lowercase also.
       # Array conditions prevent SQL injection in Active Record (sanitize).
-      @trips = Trip.where("lower(title) LIKE ?", "%#{params[:title].downcase}%")
-    else
-      @trips = Trip.all
-    end
+    #   @trips = Trip.where("lower(title) LIKE ?", "%#{params[:title].downcase}%")
+    # else
+    #   @trips = Trip.all
+    # end
+
+    @q = Trip.ransack(params[:q])
+    @trips = @q.result.includes(:user)
   end
 
   # GET /trips/1 or /trips/1.json
