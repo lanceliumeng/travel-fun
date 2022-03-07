@@ -14,14 +14,32 @@
     <div class="card-body">
       <%= trip.description %>
     </div>
+    
+    <div class="card-footer font-italic">
+      <div class="fa-solid fa-circle-info"> </div> 
+      <span class="font-weight-bold"> <%= trip.brief_info %> </span>
+      <div class="row mt-2"></div>
+      <div class="fa-solid fa-calendar-days"></div>
+      <%= trip.duration %>
+    </div>
+
+    <div class="card-footer ">
+      <div class="row"></div>
+      <div class="fa-solid fa-language"></div>
+      <%= trip.language %>
+      <div class="row"></div>
+      <div class="fa-solid fa-magnifying-glass-dollar"></div> 
+      <%= number_to_currency(trip.price) %>
+    </div>
+
 
     <%# each trip created time and user is card footer  %>
     <div class="card-footer">
       <div class="far fa-clock"></div>
-      <%= trip.created_at.strftime('%d-%b-%Y') %>
+      Created at: <%= trip.created_at.strftime('%d-%b-%Y') %>
       <div class="row"></div>
       <div class="fa-solid fa-user-astronaut"></div>
-      <%= trip.user %>
+      Created by: <%= trip.user %>
     </div>
 
     <%# each trip links are card footer as well  %>

@@ -9,7 +9,15 @@
     <%# start: for action text form view %>
     <%= f.label :description %>  
     <%= f.rich_text_area :description %>
+    <%# description cannot be blank at front end view %>
+    <small><%= f.error :description, class: 'text-danger' %></small> 
     <%# end: for action text form view %>
+
+     <%= f.input :brief_info %>
+     <%= f.input :language, collection: ["English","Chinese-Simplified","Chinese-Traditional","Korean","Japanese",] %>
+     <%= f.input :duration, collection: ["5-Days-4-Nights","4-Days-3-Nights","3-Days-2-Nights","1-Day"] %>
+     <%= f.input :price %>
+
   </div>
    
    <%# add bootsrap for edit update button %>
