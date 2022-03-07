@@ -1,0 +1,7 @@
+<%# for users controller index action view %>
+<div class="card-columns">
+  <% @users.each do |user| %>
+    <%# render user partial %>
+    <%= render 'users/user', user: user %>
+  <% end %>
+</div>

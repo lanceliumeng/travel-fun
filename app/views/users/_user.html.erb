@@ -1,0 +1,51 @@
+<%# Bootstrap card format for devise users trackable %>
+<div class="card mt-5">
+
+  <div class="card-header">
+    <div class="fa-solid fa-user-secret"></div>
+    <%= user.email %>
+  </div>
+  
+  <div class="card-footer">
+    Signed up
+    <%= time_ago_in_words(user.created_at) %>
+    ago
+  </div>
+
+  <div class="card-footer ">
+    
+    <small class="text-muted">
+        <%= 'sign_in_count:'.humanize %>  
+        <%= user.sign_in_count %>
+    </small>
+    <div class="row"></div>
+
+    
+    <small class="text-muted">
+        <%= 'current_sign_in_at:'.humanize %>
+        <%= user.current_sign_in_at %>
+    </small>
+    <div class="row"></div>
+
+   
+    <small class="text-muted">
+        <%= 'last_sign_in_at:'.humanize %>
+        <%= user.last_sign_in_at %>
+    </small>
+    <div class="row"></div>
+
+   
+    <small class="text-muted">
+        <%= 'current_sign_in_ip:'.humanize %>
+        <%= user.current_sign_in_ip %>
+    </small>
+    <div class="row"></div>
+
+    
+    <small class="text-muted">
+        <%= 'last_sign_in_ip:'.humanize %>
+        <%= user.last_sign_in_ip %>
+    </small> 
+    <div class="row"></div>
+  </div>
+</div>
