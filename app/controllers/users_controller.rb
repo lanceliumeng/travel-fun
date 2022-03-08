@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:edit, :update]
+    before_action :set_user, only: [:show, :edit, :update]
 
     def index
         # @users = User.all.order(created_at: :desc)
@@ -7,6 +7,10 @@ class UsersController < ApplicationController
         # Ransack gem for for searching/filtering users
         @q = User.ransack(params[:q])
         @users = @q.result(distinct: true)
+    end
+
+    def show
+
     end
 
     #set a method can edit users roles, commited the method cause I update befor_action for the controller
@@ -27,8 +31,9 @@ class UsersController < ApplicationController
 
     private
 
+    #because I used friendly_id gem, so add .friendly to ser_user method
     def set_user
-        @user = User.find(params[:id])
+        @user = User.friendly.find(params[:id])
     end
 
     def user_params

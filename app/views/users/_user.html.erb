@@ -3,7 +3,7 @@
 
   <div class="card-header">
     <div class="fa-solid fa-user-secret"></div>
-    <%= user.email %>
+    <%= link_to user.email, user_path(user) %>
   </div>
   
   <div class="card-footer">

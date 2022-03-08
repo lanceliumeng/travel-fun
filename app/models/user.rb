@@ -12,6 +12,10 @@ class User < ApplicationRecord
     email
   end
 
+  # for firendly_id gem usage, after use this(another migration), the user url doesn't show id, good for security
+  extend FriendlyId
+  friendly_id :email, use: :slugged
+
   #this method can split users email from @ symbol, eg, admin@test.com =>["admin", "test.com"]
   # so .first actually is [0], always choose index 0 element, kind of like username in my case
   def username

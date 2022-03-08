@@ -9,7 +9,7 @@ class Trip < ApplicationRecord
         title
     end
     
-    # for firendly_id gem usage
+    # for firendly_id gem usage, after use this(another migration), the trip url doesn't show id, good for security
     extend FriendlyId
     friendly_id :title, use: :slugged
 
