@@ -12,10 +12,12 @@ class UsersController < ApplicationController
     #set a method can edit users roles, commited the method cause I update befor_action for the controller
     def edit
         # @user = User.find(params[:id])
+        authorize @user #for only specific role(user_policy.rb) can do this action
     end
 
     #set a method can update users roles
     def update
+        authorize @user #for only specific role(user_policy.rb) can do this action
         if @user.update(user_params)
             redirect_to users_path, notice: "You have successfully updated the role for #{@user.email}."
           else
