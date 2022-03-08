@@ -35,8 +35,8 @@ gem 'faker'
 gem 'friendly_id', '~> 5.4.0'
 gem 'ransack'  #this gem enables the creation of both simple and advanced search forms for app
 gem 'public_activity' # this gem enables we can track users CRUD something in the app
-gem "rolify" #users roles and authorization helper 01
-gem "pundit" #users roles and authorization helper 02
+gem "rolify" #users roles and authorization helper 01, it can give user roles
+gem "pundit" #users roles and authorization helper 02, it can give user roles based access
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
