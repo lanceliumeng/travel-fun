@@ -34,15 +34,18 @@ class TripsController < ApplicationController
   # GET /trips/new
   def new
     @trip = Trip.new
+    authorize @trip  #for only specific role(trip_policy.rb) can do this action
   end
 
   # GET /trips/1/edit
   def edit
+    authorize @trip #for only specific role(trip_policy.rb) can do this action
   end
 
   # POST /trips or /trips.json
   def create
     @trip = Trip.new(trip_params)
+    authorize @trip #for only specific role(trip_policy.rb) can do this action
 
     #=> start: we have created a relationship between the user model and trip model
     @trip.user = current_user   
@@ -60,6 +63,7 @@ class TripsController < ApplicationController
 
   # PATCH/PUT /trips/1 or /trips/1.json
   def update
+    authorize @trip #for only specific role(trip_policy.rb) can do this action
     respond_to do |format|
       if @trip.update(trip_params)
         format.html { redirect_to trip_url(@trip), notice: "Trip was successfully updated." }
@@ -73,8 +77,9 @@ class TripsController < ApplicationController
 
   # DELETE /trips/1 or /trips/1.json
   def destroy
+    authorize @trip #for only specific role(trip_policy.rb) can do this action
     @trip.destroy
-
+  
     respond_to do |format|
       format.html { redirect_to trips_url, notice: "Trip was successfully destroyed." }
       format.json { head :no_content }
