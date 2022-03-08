@@ -6,24 +6,24 @@ class TripPolicy < ApplicationPolicy
     # end
   end
 
-    def edit?
-      (@user.has_role? :admin) || (@record.user == @user)  #only admin role can edit trips
+    def edit?  #Ruby Safe navigation operator & can solve log out error bug =>  @user&.has_role?(:admin) = @user.present? && @user.has_role?:admin
+      @user&.has_role?(:admin) || @record.user == @user  #only admin role can edit trips or when users id who match the trips creator id
     end
 
     def update?
-      (@user.has_role? :admin) || (@record.user == @user)  #only admin role can update trips
+      @user&.has_role?(:admin) || @record.user == @user  #only admin role can update trips or when users id who match the trips creator id
     end
 
     def new?
-      @user.has_role? :operator  #only operator role can create trips
+      @user&.has_role?(:operator)  #only operator role can create trips
     end
 
     def create?
-      @user.has_role? :operator  #only operator role can create trips
+      @user&.has_role?(:operator)  #only operator role can create trips
     end
 
     def destory?
-      @user.has_role? :admin  #only admin role can delete trips
+      @user&.has_role?(:admin) || @record.user == @user  #only admin role can delete trips or when users id who match the trips creator id
     end
 
 end

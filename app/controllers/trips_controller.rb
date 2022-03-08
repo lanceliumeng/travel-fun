@@ -79,7 +79,6 @@ class TripsController < ApplicationController
   def destroy
     authorize @trip #for only specific role(trip_policy.rb) can do this action
     @trip.destroy
-  
     respond_to do |format|
       format.html { redirect_to trips_url, notice: "Trip was successfully destroyed." }
       format.json { head :no_content }

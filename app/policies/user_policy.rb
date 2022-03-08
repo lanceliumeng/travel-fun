@@ -7,10 +7,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    @user.has_role? :admin  #only admin role can set other users roles
+    @user&.has_role?(:admin) #only admin role can set other users roles
   end
 
   def update?
-    @user.has_role? :admin  #only admin role can set other users roles
+    @user&.has_role?(:admin)  #only admin role can set other users roles
   end
 end

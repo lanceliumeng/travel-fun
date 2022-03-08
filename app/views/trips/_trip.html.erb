@@ -44,10 +44,11 @@
     </div>
 
     <%# each trip links are card footer as well  %>
+    <% if policy(trip).edit? %>
     <div class="card-footer">
-    <%= link_to 'Show', trip, class: 'btn btn-sm btn-success' %>
     <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-sm btn-info' %>
     <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
     </div>
+    <% end %>
 
 </div>

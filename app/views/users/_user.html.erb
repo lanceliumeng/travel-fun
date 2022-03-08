@@ -57,7 +57,8 @@
       <%= role.name %>
       </small>
     <% end %>
-
+    <% if policy(user).edit? %>
     <%= link_to 'Edit Roles', edit_user_path(user), class: 'btn btn-sm btn-warning' %>
+    <% end %>
   </div>
 </div>
