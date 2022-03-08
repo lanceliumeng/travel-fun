@@ -52,7 +52,8 @@
  <%# setup view for user roles, this one cooperate with roligy gem controller and model %> 
   <div class="card-footer ">
     <% user.roles.each do |role| %> 
-      <small class= "badge badge-success">
+        <%# the below helper method similar as the flash message, can find it at application helper file %>
+      <small class= "badge badge-<%=select_role_color(role.name)%>" >
       <%= role.name %>
       </small>
     <% end %>

@@ -27,7 +27,7 @@ class User < ApplicationRecord
       self.add_role(:admin) if self.roles.blank? 
       self.add_role(:operator)
       self.add_role(:client)
-    else 
+    else   #=> the other users role will be client and operator by default, waiting for update
       self.add_role(:client) if self.roles.blank? 
       self.add_role(:operator)
     end
