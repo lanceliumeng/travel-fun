@@ -5,8 +5,10 @@
 <%# search_form by ransack gem  %>
 <div class="row">
   <div class="col-md-2">
-    <%= search_form_for @q do |f| %>
-
+    <%# update the below @q to @ransack_trips %>
+    <%# search_form_for @q do |f| %>
+    
+    <%= search_form_for @ransack_trips, as: :trips_search, url: trips_path do |f|%>
       <%= f.label :title %>
       <%= f.search_field :title_cont, placeholder: 'Title', class: 'form-control form-control-sm' %>
      

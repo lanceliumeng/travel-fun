@@ -34,12 +34,16 @@
           <% end %>
         </li>
       <%# Search Bar Start %>
-      <%# below is search function front end, please find the controller action at trips_controller.rb file %>  
-        <div class="form-inline my-2 my-lg-0">
-          <%= form_tag(trips_path, method: :get) do %>
-            <div class="input-group">
-              <%= text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Find your favorite trip", class: 'form-control-sm' %>
-                <span class="input-group-append">
+      <%# after use ransack gem, I set a method on application controller, we can use that globel vaeiable to set nav bar search %>
+      <div class="form-inline my-2 my-lg-0">
+          <%= search_form_for @ransack_trips, as: :trips_search, url: trips_path do |f| %>
+           <div class="input-group">
+           <%# :title_or_brief_info_cont which means when client use search bar  %>
+           <%# The db will check trips table for "title"  OR "brief_info" to find if there are anything to match %>
+           <%# kind of like nav bar search includes the side bar search: title and brief info seach %>
+           <%# finally I changed it back to only for title search, I found this is more accurate for users searching %>
+           <%= f.search_field :title_cont, class: 'form-control-sm',  placeholder: 'Find Your Trip', autocomplete: 'off' %>
+            <span class="input-group-append">
                 <button class="btn btn-primary btn-sm" type="submit">
                 <span aria-hidden="true" class="fa fa-search"></span>
                 </button>
@@ -110,3 +114,16 @@
     <%# link_to 'Sign Up', new_user_registration_path %>
     <%# link_to 'Log In', new_user_session_path %>
 <%# end %>
+
+  <%# old navbar seach before used gem ransack, layout keeps same, but do need form_tag anymore in this case %>
+  <%# below is search function front end, please find the controller action at trips_controller.rb file %>  
+      <%# the below search function is for use ransack gem before %>
+        <%# <div class="form-inline my-2 my-lg-0">
+          <%# form_tag trips_path, method: :get do %>
+            <div class="input-group">
+              <%# text_field_tag :title, params :title, autocomplete: 'off', placeholder: "Find your favorite trip", class: 'form-control-sm' %>
+                <span class="input-group-append">
+              </span>
+            </div>
+          <%# end %>
+        </div> 

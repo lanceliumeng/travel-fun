@@ -10,16 +10,21 @@ class TripsController < ApplicationController
     # The lower() method converts the field on the database side to lowercase.
     # Calling params[:title].downcase converts the provided search term to lowercase also.
     # Array conditions prevent SQL injection in Active Record (sanitize).
-    if params[:title]
-      @trips = Trip.where("lower(title) LIKE ?", "%#{params[:title].downcase}%")
-    else
+    # if params[:title]
+    #   @trips = Trip.where("lower(title) LIKE ?", "%#{params[:title].downcase}%")
+    # else
     #   @trips = Trip.all
     # end
     # Ransack gem for for searching/filtering users
-    @q = Trip.ransack(params[:q])
-    @trips = @q.result.includes(:user)
-    end
+    # @q = Trip.ransack(params[:q])
+    # @trips = @q.result.includes(:user)
+    # end
     
+    #thrid update, because used ransack gem, and set set_navbar_search method at application controller
+    # so need to change above default @q variable to same as set_navbar_search method variable
+    @ransack_trips = Trip.ransack(params[:trips_search], search_key: :trips_search)
+    @trips = @ransack_trips.result.includes(:user)
+
   end
 
   # GET /trips/1 or /trips/1.json
