@@ -54,7 +54,7 @@
       <%# Search Bar End %>
       </ul>
      
-     <%# navbar right section : another_link, User_community and Account %>
+     <%# navbar right section : another_link, User_community and Account puls activities histiory %>
       <ul class="navbar-nav mr-right">
         <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
           <%= link_to root_path, class: 'nav-link' do %>
@@ -67,6 +67,14 @@
           <%= link_to users_path, class: 'nav-link' do %>
             <div class="fa-solid fa-users-gear"></div>
             Users Community
+          <% end %>
+        </li>
+
+        <%# activities history %>
+        <li class="<%= 'active font-weight-bold' if current_page?(track_activities_path) %> nav-item">
+          <%= link_to track_activities_path, class: 'nav-link' do %>
+            <div class="fa-solid fa-clipboard"></div>
+            Operation Record
           <% end %>
         </li>
 

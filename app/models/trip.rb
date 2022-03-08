@@ -13,7 +13,7 @@ class Trip < ApplicationRecord
     extend FriendlyId
     friendly_id :title, use: :slugged
 
-    # set LANGUAGES array, when trips index view call Trip.languages(selection),will use method self.lanaguages to mapping an new array which containa all available lanaguages 
+    # start: set LANGUAGES array, when trips index view call Trip.languages(selection),will use method self.lanaguages to mapping an new array which containa all available lanaguages 
     # Meanwhile, this method can let trips index view and _form view more readable
     LANGUAGES = [:"English", :"Chinese(Simplified)", :"Chinese(Traditional)", :"Korean", :"Japanese"]
     def self.languages
@@ -24,7 +24,10 @@ class Trip < ApplicationRecord
     def self.durations
         DURATIONS.map { |duration| [duration, duration] }
     end
+    # end
 
-
+    # public_activity gem setup in trip model
+    include PublicActivity::Model
+    tracked owner: Proc.new{ |controller, model| controller.current_user }
 
 end

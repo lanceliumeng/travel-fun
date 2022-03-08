@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   root 'static_pages#landing_page'
   #privacy policy page route
   get 'privacy_policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
+  #track activities routes:
+  get 'track_activities', to: 'static_pages#track_activities', as: 'track_activities'
+  
 end

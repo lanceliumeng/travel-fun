@@ -7,4 +7,6 @@ class ApplicationController < ActionController::Base
       @ransack_trips = Trip.ransack(params[:trips_search], search_key: :trips_search) 
     end
     # after users signed in, they can use navbar search as well! 
+
+    include PublicActivity::StoreController #save current_user using gem public_activity
 end

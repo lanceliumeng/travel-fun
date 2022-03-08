@@ -34,6 +34,7 @@ gem 'devise'
 gem 'faker'
 gem 'friendly_id', '~> 5.4.0'
 gem 'ransack'  #this gem enables the creation of both simple and advanced search forms for app
+gem 'public_activity' # this gem enables we can track users CRUD something in the app
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

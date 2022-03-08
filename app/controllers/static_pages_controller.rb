@@ -10,6 +10,11 @@ class StaticPagesController < ApplicationController
 
   end
 
+  # public_activity gem setup, puls track_activities views and routes, we can display uses CRUD history 
+  def track_activities
+    @activities = PublicActivity::Activity.all
+  end
+
   def privacy_policy
   end
 end
