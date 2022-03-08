@@ -13,7 +13,7 @@
   </div>
 
   <div class="card-footer ">
-    
+
     <small class="text-muted">
         <%= 'sign_in_count:'.humanize %>  
         <%= user.sign_in_count %>
@@ -47,5 +47,15 @@
         <%= user.last_sign_in_ip %>
     </small> 
     <div class="row"></div>
+  </div>
+
+ <%# setup view for user roles, this one cooperate with roligy gem controller and model %> 
+  <div class="card-footer ">
+    <% user.roles.each do |role| %> 
+      <small class= "badge badge-warning">
+      <%= role.name %>
+      </small>
+    <% end %>
+  
   </div>
 </div>
