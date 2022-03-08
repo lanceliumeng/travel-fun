@@ -1,4 +1,14 @@
 <%# for users controller index action view %>
+
+<h3>
+  <div class="text-center mt-3">
+    Our Community, now we have 
+    <div class="badge badge-info">
+      <%= @users.count %> users
+    </div>
+  </div>
+</h3>
+
 <div class="card-columns">
   <% @users.each do |user| %>
     <%# render user partial %>
