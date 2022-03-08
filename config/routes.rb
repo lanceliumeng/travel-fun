@@ -13,8 +13,16 @@ Rails.application.routes.draw do
     # put '/trips/:id', to: 'trips#update'  
     # delete '/trips/:id', to: 'trips#destroy'
     
-  # users routes 
-  resources :users, only: :index
+  # users routes, this resources includes devise users routes and I set some methods for uses roles routes
+  resources :users, only: [:index, :edit, :show, :update]
+      # routes for users roles show, edit, update
+      # get '/users', to: 'users#index', as: 'users'
+      # get '/users/:id', to: 'users#show', as: 'user'
+      # get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
+      # patch '/users/:id', to: 'users#update'
+      # put '/users/:id', to: 'users#update'
+  
+
 
   #home page route
   root 'static_pages#landing_page'

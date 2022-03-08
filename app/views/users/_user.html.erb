@@ -52,10 +52,11 @@
  <%# setup view for user roles, this one cooperate with roligy gem controller and model %> 
   <div class="card-footer ">
     <% user.roles.each do |role| %> 
-      <small class= "badge badge-warning">
+      <small class= "badge badge-success">
       <%= role.name %>
       </small>
     <% end %>
-  
+
+    <%= link_to 'Edit Roles', edit_user_path(user), class: 'btn btn-sm btn-warning' %>
   </div>
 </div>
