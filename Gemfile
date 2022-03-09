@@ -37,6 +37,8 @@ gem 'ransack'  #this gem enables the creation of both simple and advanced search
 gem 'public_activity' # this gem enables we can track users CRUD something in the app
 gem "rolify" #users roles and authorization helper 01, it can give user roles
 gem "pundit" #users roles and authorization helper 02, it can give user roles based access
+gem 'pagy' #A classic pagination gem, how me to pagination content pages, https://ddnexus.github.io/pagy/how-to#gsc.tab=0
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

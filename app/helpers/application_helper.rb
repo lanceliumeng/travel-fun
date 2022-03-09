@@ -1,4 +1,7 @@
 module ApplicationHelper
+    #pagy gem set up
+    include Pagy::Frontend  
+
     # this is for flash msg helper method, you can find it in views/shared/_messages.html.erb
     def select_alert_subclass(input)
         case input
@@ -24,6 +27,5 @@ module ApplicationHelper
             return 'info'
         end
     end
-
 
 end

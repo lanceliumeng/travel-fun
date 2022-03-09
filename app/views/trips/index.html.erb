@@ -28,7 +28,7 @@
       <%= f.select :language_cont, Trip.languages,include_blank: true %>
       
       <%= f.label :duration %>
-      <%# f.select :duration_cont,["5-Days-4-Nights","4-Days-3-Nights","3-Days-2-Nights","1-Day"], include_blank: true, class: 'form-control form-control-sm' %>
+      <%# f.select :duration_cont,"5-Days-4-Nights","4-Days-3-Nights","3-Days-2-Nights","1-Day", include_blank: true, class: 'form-control form-control-sm' %>
       <%= f.select :duration_cont, Trip.durations,include_blank: true %>
 
       <%= f.label :price %>
@@ -50,15 +50,11 @@
         <%= render 'trips/trip', trip: trip %>
       <% end %>
     </div>
+    <%# bootstrap pagy render the navigation links is doesn't work, will have error so I have to choose the basic pagy render link and overwrite the style  %>
+    <div class="pagy_nav"> <%== pagy_nav(@pagy) %> </div>
   </div>
-
+  
 </div>
 <br/>
 
 
-<%# <div class="card-columns">  changed the layout, so comments this one
-   <%# use ruby each method to list each trip in card format %>
-  <%# @trips.each do |trip| %>
-    <%# render 'trips/trip', trip: trip %>
-  <%#end %>
-</div>

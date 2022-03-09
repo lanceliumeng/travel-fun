@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+ 
     before_action :authenticate_user! #=> for user authentication by gem devise 
     # all of other controllers will inherit
     
@@ -14,6 +15,9 @@ class ApplicationController < ActionController::Base
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized 
 
     include PublicActivity::StoreController #save current_user using gem public_activity
+
+    include Pagy::Backend  #gem page set up
+
 
     private
 

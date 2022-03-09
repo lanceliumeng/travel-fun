@@ -23,8 +23,7 @@ class TripsController < ApplicationController
     #thrid update, because used ransack gem, and set set_navbar_search method at application controller
     # so need to change above default @q variable to same as set_navbar_search method variable
     @ransack_trips = Trip.ransack(params[:trips_search], search_key: :trips_search)
-    @trips = @ransack_trips.result.includes(:user)
-
+    @pagy, @trips = pagy(@ransack_trips.result.includes(:user))  # gem pagy set up
   end
 
   # set variable to collect itineraries,display it in trips show page
