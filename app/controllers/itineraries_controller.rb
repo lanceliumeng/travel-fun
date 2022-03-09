@@ -8,6 +8,7 @@ class ItinerariesController < ApplicationController
 
   # GET /itineraries/1 or /itineraries/1.json
   def show
+    authorize @itinerary
   end
 
   # GET /itineraries/new
@@ -17,6 +18,7 @@ class ItinerariesController < ApplicationController
 
   # GET /itineraries/1/edit
   def edit
+    authorize @itinerary 
   end
 
   # POST /itineraries or /itineraries.json
@@ -36,6 +38,7 @@ class ItinerariesController < ApplicationController
 
   # PATCH/PUT /itineraries/1 or /itineraries/1.json
   def update
+    authorize @itinerary 
     respond_to do |format|
       if @itinerary.update(itinerary_params)
         format.html { redirect_to itinerary_url(@itinerary), notice: "Itinerary was successfully updated." }
@@ -49,8 +52,9 @@ class ItinerariesController < ApplicationController
 
   # DELETE /itineraries/1 or /itineraries/1.json
   def destroy
-    @itinerary.destroy
+    authorize @itinerary  #gem pundit setup authorize
 
+    @itinerary.destroy
     respond_to do |format|
       format.html { redirect_to itineraries_url, notice: "Itinerary was successfully destroyed." }
       format.json { head :no_content }

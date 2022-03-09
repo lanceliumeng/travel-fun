@@ -10,15 +10,22 @@
     </div>
 
     <%# each itinerary content is card body  %>
-    <div class="card-body">
-      <%= itinerary.content %>
-      <%= itinerary.trip %>
-    </div>
+     <% if policy(itinerary).show? %>
+        <div class="card-body">
+        <%= itinerary.content %>
+        <%= itinerary.trip %>
+        </div>
+     <% end %>
 
     <%# buttons for card footer  %>
+    <%# users authorization check %>
+     <% if policy(itinerary).edit? %>
     <div class="card-footer">
     <%= link_to 'Edit', edit_itinerary_path(itinerary), class: 'btn btn-sm btn-warning' %>
     <%= link_to 'Destroy', itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
     </div>
-
+    <% end %>
 </div>
+
+<%# below p tag is for blank space %>
+<p></p>  

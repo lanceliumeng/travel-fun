@@ -45,12 +45,13 @@
       <div class="row"></div>
       <div class="fa-solid fa-user-astronaut"></div>
       <%# .username is method in user model, cam makes website more readable %>
-      Created by: <%= trip.user.username %> 
+      Created by: <%= link_to trip.user.username, user_path(trip.user)%> 
     </div>
 
     <%# each trip links are card footer as well  %>
+    <%# users authorization check %>
     <% if current_user %>
-    <% if policy(trip).edit? %>
+    <% if policy(trip).edit? %> 
     <div class="card-footer">
     <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-sm btn-info' %>
     <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
