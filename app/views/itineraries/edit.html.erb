@@ -1,7 +1,24 @@
+<div class="mt-3">
+<%# the below links will show more logic in front end like: Travel Plans\trip\itinerary %>
+    <%= link_to 'Travel Plans', trips_path %>
+\
+    <%# icon + boostrap color %>
+    <i class="fa-solid fa-map-location-dot text-info"></i>
+    <%= link_to @itinerary.trip.title, trip_path(@itinerary.trip) %> 
+\
+    <i class="fa-solid fa-sun text-warning"></i>
+    <%= link_to @itinerary.title, trip_itinerary_path(@trip, @itinerary) %>
+\
+    <i class="fa-solid fa-keyboard"></i> Edit
+    <p></p>
+</div>
 <%# minor styling just like trips edit view %>
 <div class="card mt-3">
   <div class="card-header">
-    <h1>Editing Itinerary</h1>
+    <h1>
+    <i class="fa-solid fa-pen-to-square"></i>
+     Editing Itinerary
+     </h1>
   </div>
   
   <div class="card-body">

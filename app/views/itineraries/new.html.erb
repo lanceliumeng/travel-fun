@@ -1,8 +1,22 @@
+<div class="mt-3">
+<%= link_to 'Travel Plans', trips_path %>
+\
+<%# icon + boostrap color %>
+<i class="fa-solid fa-map-location-dot text-info"></i>
+<%= link_to @trip.title, trip_path(@trip) %> 
+\
+New Itinerary
+<p></p>
+</div>
+
 <%# minor styling just like trips new view %>
 <div class="card mt-3">
 
   <div class="card-header">
-    <h1>New Itinerary</h1>
+    <h1> 
+    <i class="fa-solid fa-route"></i>
+    New Itinerary
+    </h1>
   </div>
 
   <div class="card-body"> 

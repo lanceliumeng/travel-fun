@@ -9,12 +9,6 @@
   </div>
 </h3>
 
-<div class="card-columns">
-  <% @users.each do |user| %>
-    <%# render user partial %>
-    <%= render 'users/user', user: user %>
-  <% end %>
-</div>
 <%# front end view cooperate with gem ransack users controller %>
 <div class="form-inline">
   <%= search_form_for @q do |f| %>
@@ -48,6 +42,9 @@
       <th>
         <%= "last_sign_in_at".humanize %>
       </th>
+      <th>
+         Roles
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -71,7 +68,27 @@
         <td>
           <%= user.last_sign_in_at %>
         </td>
+        <td>
+          <% user.roles.each do |role| %> 
+          <%# the below helper method similar as the flash message, can find it at application helper file %>
+          <div class= "badge badge-<%=select_role_color(role.name)%>" >
+              <%= role.name %>
+          </div>
+          <% end %>
+          <% if policy(user).edit? %>
+              <div><%= link_to 'Edit Roles', edit_user_path(user), class: 'btn btn-sm btn-warning' %> </div>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+
+
+<%# <div class="card-columns">
+  <%# @users.each do |user| %>
+    <%# render user partial %>
+    <%# render 'users/user', user: user %>
+  <%#end %>
+</div>
