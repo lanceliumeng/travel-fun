@@ -14,7 +14,10 @@
         <%= render 'trips/trip', trip: @trip %>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6"> 
+        <%# the below front end view is add itinerary can click, after click, the url link to /itineraries/new?trip_id=xx  %>
+        <%= link_to 'Add Itinerary', new_itinerary_path(trip_id: @trip.id) %>
+
         <%# render partial page itinerary for exactly trip %>
         <% @itineraries.each do |itinerary|%>
         <%= render 'itineraries/itinerary', itinerary: itinerary %>
