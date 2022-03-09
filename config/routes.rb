@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :itineraries
   #devise gems routes
   devise_for :users
 
@@ -22,8 +21,12 @@ Rails.application.routes.draw do
       # get '/users/:id/edit', to: 'users#edit', as: 'edit_user'  #=> edit_user_path
       # patch '/users/:id', to: 'users#update'
       # put '/users/:id', to: 'users#update'
-  
-
+  #itineraries routes
+  resources :itineraries
+    # get '/itineraries/:id', to: 'itineraries#show', as: 'itinerary'   #=> itinerary_path
+    # get '/itineraries/new', to: 'itineraries#new', as: 'new_itinerary' #=> new_itinerary_path
+    # get '/itineraries/:id/edit', to: 'itineraries#edit', as: 'edit_itinerary' #=> edit_itinerary_path
+    
 
   #home page route
   root 'static_pages#landing_page'
