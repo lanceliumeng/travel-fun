@@ -11,7 +11,7 @@ class ItineraryPolicy < ApplicationPolicy
     end
   
       def edit?  #gem pundit, similar setup as trip policy
-         @record.trip.user == @user  # when users id who match the trips creator id can edit
+         @record.trip.user == @user  # when users id who match the trips creator id can edit, which means only the trip creator can do this action
       end
   
       def update?
@@ -23,7 +23,7 @@ class ItineraryPolicy < ApplicationPolicy
       end
   
       def create?
-        # @user&.has_role?(:operator)  #only operator role can create trips
+        @record.trip.user == @user  #only operator role can create trips
       end
   
       def destory?

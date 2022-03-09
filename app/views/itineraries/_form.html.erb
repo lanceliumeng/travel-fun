@@ -9,6 +9,8 @@
     <%# add rich text area view for itinerary form %>
     <%= f.label :content %>  
     <%= f.rich_text_area :content %>
+    <%# content area cannot blank %>
+    <small><%= f.error :content, class: 'text-danger' %></small>  
     <%# f.association :trip %>
     <%# the below input value will either be @itinerary.trip_id or params in url %>
     <%# f.input :trip_id, input_html: {value: @itinerary.trip_id || params[:trip_id]}, as: :hidden %>
