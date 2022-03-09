@@ -27,8 +27,9 @@ class TripsController < ApplicationController
 
   end
 
-  # GET /trips/1 or /trips/1.json
+  # set variable to collect itineraries,display it in trips show page
   def show
+    @itineraries = @trip.itineraries
   end
 
   # GET /trips/new

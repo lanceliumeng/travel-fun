@@ -1,0 +1,24 @@
+<%# set card format for each itinerary %>
+<div class="card">
+  <%# each img for travel trip %>
+  <%# <img class="card-img-top" src="..." alt="Card image cap">    %>
+
+     <%# each itinerary title is card header  %>
+    <div class="card-header">
+      <div class="fa-solid fa-bus"></div>
+        <%= link_to itinerary.title, itinerary %>
+    </div>
+
+    <%# each itinerary content is card body  %>
+    <div class="card-body">
+      <%= itinerary.content %>
+      <%= itinerary.trip %>
+    </div>
+
+    <%# buttons for card footer  %>
+    <div class="card-footer">
+    <%= link_to 'Edit', edit_trip_path(itinerary), class: 'btn btn-sm btn-warning' %>
+    <%= link_to 'Destroy', itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+    </div>
+
+</div>

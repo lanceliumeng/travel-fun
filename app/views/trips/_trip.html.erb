@@ -20,7 +20,12 @@
       <span class="font-weight-bold"> <%= trip.brief_info %> </span>
       <div class="row mt-2"></div>
       <div class="fa-solid fa-calendar-days"></div>
-      <%= trip.duration %>
+      <%# trip.duration => no need this code, as I create new table belongs to trips table%> 
+      <% if trip.itineraries.count == 1 %> 
+          <%= trip.itineraries.count %> - Day
+      <% else %>
+          <%= trip.itineraries.count %> - Days
+      <% end %>
     </div>
 
     <div class="card-footer ">

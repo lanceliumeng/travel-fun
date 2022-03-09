@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'itineraries/itinerary', itinerary: @itinerary %>
+
+<%= link_to 'Back to trip', trip_path(@itinerary.trip) %>

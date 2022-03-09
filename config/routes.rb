@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :itineraries
   #devise gems routes
   devise_for :users
 

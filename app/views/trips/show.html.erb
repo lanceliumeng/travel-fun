@@ -1,11 +1,24 @@
 <%# show page will display each trip details %>
 <div class="container mt-3">
-<%= link_to 'Travel Plans', trips_path %>
+    <%= link_to 'Travel Plans', trips_path %>
 \
-<%# icon + boostrap color %>
-<i class="fa-solid fa-map-location-dot text-info"></i>
-<%= link_to @trip.title, trip_path(@trip) %> 
-<p></p>
-<%# render partial page trip for exactly trip %>
-<%= render 'trips/trip', trip: @trip %>
+    <%# icon + boostrap color %>
+    <i class="fa-solid fa-map-location-dot text-info"></i>
+    <%= link_to @trip.title, trip_path(@trip) %> 
+    <p></p>
+
+    <%# devide each trip view table to 2 parts, good for front end %>
+    <div class="row">
+        <div class="col-lg-6">
+        <%# render partial page trip for exactly trip %>
+        <%= render 'trips/trip', trip: @trip %>
+        </div>
+
+        <div class="col-lg-6">
+        <%# render partial page itinerary for exactly trip %>
+        <% @itineraries.each do |itinerary|%>
+        <%= render 'itineraries/itinerary', itinerary: itinerary %>
+        <% end %>
+        </div>
+    </div>
 </div>

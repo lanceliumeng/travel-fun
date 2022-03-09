@@ -4,6 +4,8 @@ class Trip < ApplicationRecord
     validates :description, presence: true, length: {:minimum => 5 }
     belongs_to :user #users and trips table relationships
     has_rich_text :description  #=> for rails action text, when we create new trip, description area has more powful function to edit text 
+    has_many :itineraries, dependent: :destroy # trips and itineraries table relationship, if trip has some itineraries are deleted, the itineraries are also deleted
+
 
     def to_s
         title
