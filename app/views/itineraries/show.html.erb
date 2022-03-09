@@ -8,7 +8,7 @@
     <%= link_to @itinerary.trip.title, trip_path(@itinerary.trip) %> 
 \
     <i class="fa-solid fa-sun text-warning"></i>
-    <%= link_to @itinerary.title, itinerary_path(@itinerary) %>
+    <%= link_to @itinerary.title, trip_itinerary_path(@trip, @itinerary) %>
     <p></p>
 
 <%= render 'itineraries/itinerary', itinerary: @itinerary %>

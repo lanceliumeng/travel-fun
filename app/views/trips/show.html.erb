@@ -15,8 +15,9 @@
         </div>
 
         <div class="col-lg-6"> 
-        <%# the below front end view is add itinerary can click, after click, the url link to /itineraries/new?trip_id=xx  %>
-        <%= link_to 'Add Itinerary', new_itinerary_path(trip_id: @trip.id) %>
+        <%# the below front end view is add itinerary can click, after click, the url link nested route  %>
+        <%# trip_itinerary_path(@trip,@itinerary) => localhost:3000/trips/trip.id/itinerary/itinerary.id %>
+        <%= link_to 'Add Itinerary', new_trip_itinerary_path(@trip, @itinerary) %>
 
         <%# render partial page itinerary for exactly trip %>
         <% @itineraries.each do |itinerary|%>

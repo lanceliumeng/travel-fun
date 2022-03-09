@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   # trips routes
-  resources :trips  #Rails provides a special resources notation, This line will automatically generate below routes
     # get '/trips', to: 'trips#index', as: 'trips'   #=> trips_path
     # post '/trips', to: 'trips#create'
     # get '/trips/new', to: 'trips#new', as: 'new_trip'  #=> new_trip_path
@@ -12,6 +11,18 @@ Rails.application.routes.draw do
     # patch '/trips/:id', to: 'trips#update'  
     # put '/trips/:id', to: 'trips#update'  
     # delete '/trips/:id', to: 'trips#destroy'
+
+  # itineraries routes
+  # get '/itineraries/:id', to: 'itineraries#show', as: 'itinerary'   #=> itinerary_path
+  # get '/itineraries/new', to: 'itineraries#new', as: 'new_itinerary' #=> new_itinerary_path
+  # get '/itineraries/:id/edit', to: 'itineraries#edit', as: 'edit_itinerary' #=> edit_itinerary_path
+  
+  # Rails provides a special resources notation, it will automatically generate above routes
+  # I have commented above simple routes, try to use reouseces notation + nest resources to let ininerary in trip
+    resources :trips  do
+      resources :itineraries
+    end
+  
     
   # users routes, this resources includes devise users routes and I set some methods for uses roles routes
   resources :users, only: [:index, :edit, :show, :update]
@@ -21,11 +32,7 @@ Rails.application.routes.draw do
       # get '/users/:id/edit', to: 'users#edit', as: 'edit_user'  #=> edit_user_path
       # patch '/users/:id', to: 'users#update'
       # put '/users/:id', to: 'users#update'
-  #itineraries routes
-  resources :itineraries
-    # get '/itineraries/:id', to: 'itineraries#show', as: 'itinerary'   #=> itinerary_path
-    # get '/itineraries/new', to: 'itineraries#new', as: 'new_itinerary' #=> new_itinerary_path
-    # get '/itineraries/:id/edit', to: 'itineraries#edit', as: 'edit_itinerary' #=> edit_itinerary_path
+  
     
 
   #home page route
