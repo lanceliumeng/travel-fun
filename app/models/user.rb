@@ -38,6 +38,11 @@ class User < ApplicationRecord
   end
 
   validate :must_have_a_role, on: :update  #each user must has at least a role
+
+
+  def online?   #=> if user data was changed less than 2 mins, then user is online, this needs cooperate with views
+    updated_at > 2.minutes.ago  #=> when a user logout 2 mins, then the user is offline, can check this logic in _user view
+  end  
   
   private
   def must_have_a_role
@@ -45,5 +50,6 @@ class User < ApplicationRecord
       errors.add(:roles, "user must have at least one role") #if edit user and doesn't have any role, will rise a notice
     end
   end
+
 
 end

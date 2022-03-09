@@ -2,7 +2,14 @@
 <div class="card mt-5">
 
   <div class="card-header">
-    <div class="fa-solid fa-user-secret"></div>
+    <% if  user.online? %>
+      <div class="text-primary fa-solid fa-user-secret"></div>
+      <i class="text-warning fa-solid fa-lightbulb"></i>
+    <% else %>
+      <div class="fa-solid fa-user-secret"></div>
+      <i class="fa-solid fa-lightbulb"></i>
+    <% end %>
+    <%# the above is check if users online or not %>
     <%= link_to user.email, user_path(user) %>
   </div>
   

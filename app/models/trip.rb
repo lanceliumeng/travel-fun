@@ -20,7 +20,7 @@ class Trip < ApplicationRecord
         LANGUAGES.map { |language| [language, language] }
     end
 
-    DURATIONS = [:"5-Days-4-Nights", :"4-Days-3-Nights", :"3-Days-2-Nights", :"1-Day"]
+    DURATIONS = [:"5-Days", :"4-Days", :"3-Days", :"1-Day"]
     def self.durations
         DURATIONS.map { |duration| [duration, duration] }
     end
