@@ -7,6 +7,7 @@ class UsersController < ApplicationController
         # Ransack gem for for searching/filtering users
         @q = User.ransack(params[:q])
         @users = @q.result(distinct: true)
+        authorize @users #for only specific role(user_policy.rb) can do this action
     end
 
     def show

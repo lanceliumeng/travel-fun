@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders or /orders.json
   def index
     @orders = Order.all
+    authorize @orders #for only specific role(order_policy.rb) can do this action
   end
 
   # GET /orders/1 or /orders/1.json
@@ -17,6 +18,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    authorize @order #for only specific role(order_policy.rb) can do this action
   end
 
   #create action for place new order 
@@ -48,6 +50,7 @@ class OrdersController < ApplicationController
 
   # PATCH/PUT /orders/1 or /orders/1.json
   def update
+    authorize @order #for only specific role(order_policy.rb) can do this action
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to order_url(@order), notice: "Order was successfully updated." }
@@ -61,8 +64,8 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1 or /orders/1.json
   def destroy
+    authorize @order #for only specific role(order_policy.rb) can do this action
     @order.destroy
-
     respond_to do |format|
       format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
       format.json { head :no_content }

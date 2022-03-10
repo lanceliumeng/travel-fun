@@ -6,6 +6,10 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    @user&.has_role?(:admin) #only admin role can check other users status
+  end
+
   def edit?
     @user&.has_role?(:admin) #only admin role can set other users roles
   end
