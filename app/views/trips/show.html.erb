@@ -22,7 +22,10 @@
         <div class="col-lg-6"> 
         <%# the below front end view is add itinerary can click, after click, the url link nested route  %>
         <%# trip_itinerary_path(@trip,@itinerary) => localhost:3000/trips/trip.id/itinerary/itinerary.id %>
+        <%# client role cannot see this button %>
+        <% if policy(@itineraries).new? %> 
         <%= link_to 'Add New Itinerary', new_trip_itinerary_path(@trip, @itinerary), class: 'btn btn-success btn-sm btn-block mb-3' %>
+        <% end %>
 
         <%# render partial page itinerary for exactly trip %>
         <% @itineraries.each do |itinerary|%>

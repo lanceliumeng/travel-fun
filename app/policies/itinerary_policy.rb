@@ -6,9 +6,9 @@ class ItineraryPolicy < ApplicationPolicy
       end
     end
 
-    def show?
-        @user&.has_role?(:admin) || @record.trip.user == @user #only admin role can edit trips or when users id who match the trips creator id
-    end
+    # def show?
+    #     @user&.has_role?(:admin) || @record.trip.user == @user #only admin role can edit trips or when users id who match the trips creator id
+    # end
   
       def edit?  #gem pundit, similar setup as trip policy
          @record.trip.user == @user  # when users id who match the trips creator id can edit, which means only the trip creator can do this action
@@ -19,7 +19,7 @@ class ItineraryPolicy < ApplicationPolicy
       end
   
       def new?
-        # @user&.has_role?(:operator)  #only operator role can create trips
+        @user&.has_role?(:operator) || @user&.has_role?(:admin) #only operator role can create trips
       end
   
       def create?

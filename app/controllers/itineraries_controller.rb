@@ -8,13 +8,14 @@ class ItinerariesController < ApplicationController
 
   # GET /itineraries/1 or /itineraries/1.json
   def show
-    authorize @itinerary #for only specific role(itinerary_policy.rb) can do this action
+   
   end
 
   # GET /itineraries/new
   def new
     @itinerary = Itinerary.new
     @trip = Trip.friendly.find(params[:trip_id])
+    authorize @itinerary #for only specific role(itinerary_policy.rb) can do this action
   end
 
   # GET /itineraries/1/edit
