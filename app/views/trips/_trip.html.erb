@@ -34,7 +34,8 @@
       <%= trip.language %>
       <div class="row"></div>
       <div class="fa-solid fa-magnifying-glass-dollar"></div> 
-      <%= number_to_currency(trip.price) %>
+      <%# trip_helper method %>
+      <%= order_button(trip)%>
     </div>
 
 

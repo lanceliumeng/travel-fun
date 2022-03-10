@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
   resources :orders
+   #orders routes
+  #  get '/orders', to: 'orders#index', as: 'orders' #=> orders_path
+  #  post '/orders', to: 'orders#create'
+  #  get '/orders/new', to: 'orders#new', as: 'new_order' #=>new_order_path
+  #  get '/orders/:id/edit', to: 'orders#edit', as: 'edit_order' #=>edit_order_path
+  #  get '/orders/:id', to: 'orders#show', as: 'order' #=>order_path 
+  #  patch '/orders/:id', to: 'orders#update'    
+  #  put '/orders/:id', to: 'orders#update  
+  #  delete '/orders/:id', to: 'orders#destroy'
+    
   #devise gems routes
   devise_for :users
 
@@ -22,8 +32,12 @@ Rails.application.routes.draw do
   # I have commented above simple routes, try to use reouseces notation + nest resources to let ininerary in trip
     resources :trips  do
       resources :itineraries
+      resources :orders, only: [:new, :create]
     end
-  
+    #nested routes also includes:
+    # post '/trips/:trip_id/orders', to: 'orders#create', as: 'trip_orders' #=> trip_orders_path
+    # get '/trips/:trip_id/orders/new', to: 'orders#new', as: 'new_trip_order' #=> new_trip_order_path
+
     
   # users routes, this resources includes devise users routes and I set some methods for uses roles routes
   resources :users, only: [:index, :edit, :show, :update]

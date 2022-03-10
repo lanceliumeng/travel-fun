@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_trip, only: [:new, :create]
   # GET /orders or /orders.json
   def index
     @orders = Order.all
@@ -19,18 +19,30 @@ class OrdersController < ApplicationController
   def edit
   end
 
-  # POST /orders or /orders.json
+  #create action for place new order 
   def create
-    @order = Order.new(order_params)
-    @order.price = @order.trip.price  #when place order, order doesn't need to create its own price, it price needs to equal the trip's price
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    # @order = Order.new(order_params)
+    # @order.price = @order.trip.price  #when place order, order doesn't need to create its own price, it price needs to equal the trip's price
+    # respond_to do |format|
+    #   if @order.save
+    #     format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
+    #     format.json { render :show, status: :created, location: @order }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @order.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+    #before I don't set any payment function, I create the method below:
+    # if trip price != 0, then cannot make payment,get alert msg and redirect to new order path.
+    # else, if price is free, then can place the order
+    # @trip in private method set_trip
+    if @trip.price > 0
+      flash[:alert] = "You can not access paid trip yet."
+      redirect_to new_trip_order_path(@trip)
+    else
+      @order = current_user.purchase_trip(@trip)
+      redirect_to trip_path(@trip), notice: "Yeah! You made an order!"
     end
   end
 
@@ -65,6 +77,10 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:trip_id, :user_id, :rating, :review)
+      params.require(:order).permit(:rating, :review)
+    end
+
+    def set_trip
+      @trip = Trip.friendly.find(params[:trip_id])
     end
 end

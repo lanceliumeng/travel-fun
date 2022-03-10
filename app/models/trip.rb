@@ -32,4 +32,11 @@ class Trip < ApplicationRecord
     include PublicActivity::Model
     tracked owner: Proc.new{ |controller, model| controller.current_user }
 
+    def purchased(user) 
+        self.orders.where(user_id: [uder.id], trip_id: [self.id].empty?)
+         #=> at this stage, I set a logic if current user didn't place any order , then the user can go ahead to buy.
+         #=> eg, if a user joined a golf tour from tomorrow then the user only can join this specific tour during the exactly period
+         #=> which means the user cannot join another different tour from tomorrow. 
+    end
+
 end

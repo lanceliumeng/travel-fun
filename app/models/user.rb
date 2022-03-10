@@ -46,6 +46,11 @@ class User < ApplicationRecord
     updated_at > 2.minutes.ago  #=> when a user logout 2 mins, then the user is offline, can check this logic in _user view
   end  
   
+  def purchase_trip(trip)   #=> user can buy trip, will create a order,which includes current trip and current price for this current user
+    self.orders.create(trip: trip, price: trip.price)
+  end 
+
+
   private
   def must_have_a_role
     unless roles.any?
