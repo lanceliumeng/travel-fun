@@ -1,3 +1,8 @@
+<%# dynamic title for trip show page => trips show page title should like Travel-Fun/trip title%> 
+<% content_for :title do %>
+  Travel Fun/<%= @trip.title %>
+<% end %>
+
 <%# show page will display each trip details %>
 <div class="container mt-3">
     <%= link_to 'Travel Plans', trips_path %>

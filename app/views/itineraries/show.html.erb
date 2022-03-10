@@ -1,3 +1,8 @@
+<%# dynamic title for trip edit page => trips edit page title should like Travel Fun/Editing xxx%> 
+<% content_for :title do %>
+  Travel Fun/Trip <%= @trip.title %>/Itinerary <%= @itinerary.title%>
+<% end %>
+
 <div class="container mt-3">
 <%# the below links will show more logic in front end like: Travel Plans\trip\itinerary %>
 

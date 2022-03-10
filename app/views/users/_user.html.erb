@@ -1,7 +1,9 @@
+
 <%# Bootstrap card format for devise users trackable %>
 <div class="card mt-5">
 
   <div class="card-header">
+  <%# display some icon in view if user online %>
     <% if  user.online? %>
       <div class="text-primary fa-solid fa-user-secret"></div>
       <i class="text-warning fa-solid fa-lightbulb"></i>

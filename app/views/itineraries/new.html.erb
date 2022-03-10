@@ -1,3 +1,8 @@
+<%# dynamic title for itinerary createing new page => itinerary createing new page title%> 
+<% content_for :title do %>
+  Travel Fun/Trip <%= @trip.title %>/New itinerary
+<% end %>
+
 <div class="mt-3">
 <%= link_to 'Travel Plans', trips_path %>
 \

@@ -1,5 +1,10 @@
-<%# for users controller index action view %>
+<%# dynamic title for user page => user page title should like Travel-Fun/All Users%> 
+<% content_for :title do %>
+  Travel Fun/All Users
+<% end %>
 
+
+<%# for users controller index action view %>
 <h3>
   <div class="text-center mt-3">
     Our Community, now we have 
@@ -54,7 +59,15 @@
           <%= user.id %>
         </td>
         <td>
-          <%= user.email %>
+          <%# display some icon in view if user online %>
+            <% if  user.online? %>
+              <div class="text-primary fa-solid fa-user-secret"></div>
+              <i class="text-warning fa-solid fa-lightbulb"></i>
+            <% else %>
+              <div class="fa-solid fa-user-secret"></div>
+              <i class="fa-solid fa-lightbulb"></i>
+            <% end %>
+            <%= link_to user.email, user_path(user) %>
         </td>
         <td>
           <%= user.created_at %>

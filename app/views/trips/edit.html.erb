@@ -1,3 +1,7 @@
+<%# dynamic title for trip edit page => trips edit page title should like Travel Fun/Editing xxx%> 
+<% content_for :title do %>
+  Travel Fun/Editing <%= @trip.title %>
+<% end %>
 
 <div class="card mt-3">
   <div class="card-header">
