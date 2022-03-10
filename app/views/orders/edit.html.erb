@@ -1,0 +1,21 @@
+<%# dynamic title for order edit page => order edit page title should like Travel Fun/Editing xxx%> 
+<% content_for :title do %>
+  Travel Fun/Editing <%= @order.to_s %>
+<% end %>
+
+<div class="card mt-3">
+  <div class="card-header">
+    <h1>
+      <i class="fa-solid fa-basket-shopping"></i> 
+      Editing Order
+    </h1>
+  </div>
+  
+  <div class="card-body">
+    <%= render 'form', order: @order %>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Show', @order %> |
+    <%# I add below path in case when user in edit page, click back button will not go to Order listing page, I want them can go to the exactly order page %>
+    <%= link_to 'Back', order_path(params[:id]) %>
+  </div>

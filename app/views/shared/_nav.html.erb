@@ -35,6 +35,13 @@
             New Trip
           <% end %>
         </li>
+        <%# lind to Order page %>
+        <li class="<%= 'active font-weight-bold' if current_page?(orders_path) %> nav-item">
+          <%= link_to orders_path, class: 'nav-link' do %>
+            <div class="fa-solid fa-cart-shopping"></div>
+           Orders
+          <% end %>
+        </li>
       <%# Search Bar Start %>
       <%# after use ransack gem, I set a method on application controller, we can use that globel vaeiable to set nav bar search %>
       <div class="form-inline my-2 my-lg-0">

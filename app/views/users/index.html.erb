@@ -15,7 +15,7 @@
 </h3>
 
 <%# front end view cooperate with gem ransack users controller %>
-<div class="form-inline">
+<div class="form-inline mt-4">
   <%= search_form_for @q do |f| %>
     <%= f.search_field :email_cont, placeholder: "email search" %>
     <%= f.submit "Search", class: "btn btn-sm btn-info" %>
@@ -26,8 +26,10 @@
       refresh
   <% end %>
 </div>
+
+<div class="table-responsive">
 <%# search table %>
-<table class="table table-bordered mt-3 text-center">
+<table class="table table-bordered mt-3 table-striped table-sm text-center">
   <thead>
     <tr>
       <th>id</th>
@@ -96,7 +98,7 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 
 
 <%# <div class="card-columns">

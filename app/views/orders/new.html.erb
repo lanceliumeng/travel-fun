@@ -1,0 +1,24 @@
+<%# dynamic title for trip new page => trips new page title should like Travel Fun/New Trip%> 
+<% content_for :title do %>
+  Travel Fun/New Order
+<% end %>
+
+<%# bootstrap format for new order page %>
+<div class="card mt-3">
+
+  <div class="card-header">
+    <h1>
+      <i class="fa-solid fa-bag-shopping"></i>
+      New Order
+    </h1>
+  </div>
+
+  <div class="card-body"> 
+    <%= render 'form', order: @order %>
+  </div>
+
+  <div class="card-footer">
+    <%= link_to 'Back', orders_path %>
+  </div>
+
+</div>

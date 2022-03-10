@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_09_003534) do
+ActiveRecord::Schema.define(version: 2022_03_10_013714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,18 @@ ActiveRecord::Schema.define(version: 2022_03_09_003534) do
     t.index ["trip_id"], name: "index_itineraries_on_trip_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "rating"
+    t.text "review"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["trip_id"], name: "index_orders_on_trip_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -149,5 +161,7 @@ ActiveRecord::Schema.define(version: 2022_03_09_003534) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "itineraries", "trips"
+  add_foreign_key "orders", "trips"
+  add_foreign_key "orders", "users"
   add_foreign_key "trips", "users"
 end

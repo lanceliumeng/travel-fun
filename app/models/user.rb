@@ -7,6 +7,8 @@ class User < ApplicationRecord
   rolify
   #users and trips table relationships
   has_many :trips 
+  # users and orders table relationships
+  has_many :orders 
 
   def to_s
     email
