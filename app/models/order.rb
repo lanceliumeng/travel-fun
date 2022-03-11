@@ -12,7 +12,6 @@ class Order < ApplicationRecord
     user.to_s + " " + trip.to_s
   end
 
-
   #business logic: if user is company operator, they can create trip plan, but they cannot use that account to buy the trip.
   validate :cannot_buy_own_trip 
   protected

@@ -11,17 +11,21 @@
     </div>
 
     <div class="card-body">
-        <p>
-        <i class="fa-solid fa-comment-dots text-success"></i>
-        <small><%= order.review %></small>
-        </p>
-       
+    
        <%# use times do to set front end view about rating %>
        <%# don't know how to display front end view when rating is  4.5, 3.5 sth like that %>
-       <p>
+       <p> 
+       <i class="fa-brands fa-gratipay text-danger"></i>
+       <span class="font-weight-bold"> Rating: &nbsp</span> 
         <% order.rating.times do %>
             <i class="fa-solid fa-heart text-danger"></i>
         <% end %>
+        </p>
+
+        <p> 
+        <i class="fa-solid fa-comment-dots text-success"></i>
+        <span class="font-weight-bold"> Review: &nbsp</span>
+            <%= order.review %>
         </p>
     </div>
     

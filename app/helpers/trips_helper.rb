@@ -17,4 +17,20 @@ module TripsHelper
             link_to "Check Price", trip_path(trip), class: 'btn btn-md btn-success'
         end
     end
+
+    def review_button(trip)
+        user_trip = trip.orders.where(user: current_user)  #=> make suer the current user order trip and trip match
+        if current_user
+            if user_trip.any? #=> if current user has ordered the trip
+                if user_trip.where(rating:[0, nil, ""], review:[0, nil, ""]).any? #=> if they don't leave any review and rating, then can add review
+                    link_to "Add a review", edit_order_path(user_trip.first)
+                else  #=> else give them plain text to notice, in the furture, I want to add user can edit their reviews
+                    "You have left a review. Thank you!"
+                    link_to "Click me to check your review", order_path(user_trip.first)
+                end
+            end
+        end
+    end
+
+
 end
