@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
   before_action :set_trip, only: [:new, :create]
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
+    # @orders = Order.all
+    @pagy, @orders = pagy(Order.all)  # gem pagy set up
     authorize @orders #for only specific role(order_policy.rb) can do this action
   end
 

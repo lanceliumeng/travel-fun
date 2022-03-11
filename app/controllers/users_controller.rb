@@ -6,7 +6,8 @@ class UsersController < ApplicationController
         
         # Ransack gem for for searching/filtering users
         @q = User.ransack(params[:q])
-        @users = @q.result(distinct: true)
+        # @users = @q.result(distinct: true)
+        @pagy, @users = pagy(@q.result(distinct: true))  # gem pagy set up
         authorize @users #for only specific role(user_policy.rb) can do this action
     end
 
