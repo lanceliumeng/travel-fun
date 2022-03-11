@@ -28,13 +28,13 @@
             Trips
           <% end %>
         </li>
-        <%# link to add new trip page %>
-        <li class="<%= 'active font-weight-bold' if current_page?(new_trip_path) %> nav-item">
-          <%= link_to new_trip_path, class: 'nav-link' do %>
+        <%# link to add new trip page, update this link to below base on users role %>
+        <%# <li class="'active font-weight-bold' if current_page?(new_trip_path)  nav-item">
+          link_to new_trip_path, class: 'nav-link' do 
             <div class="fa-solid fa-location-arrow"></div>
             New Trip
-          <% end %>
-        </li>
+           end 
+        </li> %>
         <%# lind to Order page %>
         <li class="<%= 'active font-weight-bold' if current_page?(orders_path) %> nav-item">
           <%= link_to orders_path, class: 'nav-link' do %>
@@ -62,30 +62,71 @@
         </div>
       <%# Search Bar End %>
       </ul>
+
+
+
      
      <%# navbar right section :  User_community and Account puls activities histiory %>
       <ul class="navbar-nav mr-right">
-        
-        <li class="<%= 'active font-weight-bold' if current_page?(users_path) %> nav-item">
-          <%= link_to users_path, class: 'nav-link' do %>
-            <div class="fa-solid fa-users-gear"></div>
-            Users Community
-          <% end %>
-        </li>
-
-        <%# activities history %>
-        <li class="<%= 'active font-weight-bold' if current_page?(track_activities_path) %> nav-item">
-          <%= link_to track_activities_path, class: 'nav-link' do %>
-            <div class="fa-solid fa-clipboard"></div>
-            Operation Record
-          <% end %>
-        </li>
-
+      <%# if user is Admin dropdown %>
+      <% if current_user.has_role?(:admin) %>
         <li class="nav-item dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
-            <b>
-              <%= current_user.username %>
-            </b>
+            <div class="fa-solid fa-crown"></div>
+            <b>Admin Manager</b>
+          </a>
+          <div aria-labelledby="adminDropdown" class="dropdown-menu dropdown-menu-right">
+            <%= link_to users_path, class: "dropdown-item" do %>
+              <div class="fa-solid fa-users-gear"></div>
+              <b> Users Community</b>
+            <% end %>
+
+            <%= link_to track_activities_path, class: "dropdown-item" do %>
+               <div class="fa-solid fa-clipboard"></div>
+               <b> Operation Record </b>
+            <% end %>
+
+            <%= link_to orders_path, class: "dropdown-item" do %>
+               <div class="fa-solid fa-cart-shopping"></div>
+               <b> All Orders </b>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+
+      <%# if user is Operator dropdown %>
+      <% if current_user.has_role?(:operator) %>
+        <li class="nav-item dropdown">
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+            <div class="fa-solid fa-user-gear"></div>
+            <b>Operate</b>
+          </a>
+          <%# link to add new trip page %>
+          <div aria-labelledby="operatorDropdown" class="dropdown-menu dropdown-menu-right">
+            <%= link_to new_trip_path, class: "dropdown-item" do %>
+              <i class="fa-solid fa-folder-plus"></i>
+              <b> New Trip </b>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+
+      <%# if user is Operator dropdown %>
+      <% if current_user.has_role?(:client) %>
+        <li class="nav-item dropdown">
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+            <div class="fa-solid fa-paper-plane"></div>
+            <b>Travel Plan</b>
+          </a>
+          
+        </li>
+      <% end %>
+
+        <%# users profile dropdown %>
+        <li class="nav-item dropdown">
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+            <div class="fa-solid fa-address-card"></div>
+            <b><%= current_user.username %></b>
           </a>
           <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
@@ -99,6 +140,7 @@
           </div>
         </li>
       </ul>
+
      <%# if user didn't log in  %>
     <% else %>
       <ul class="navbar-nav">
@@ -138,3 +180,6 @@
             </div>
           <%# end %>
         </div> 
+
+
+     

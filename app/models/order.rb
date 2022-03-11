@@ -8,6 +8,11 @@ class Order < ApplicationRecord
   validates_uniqueness_of :trip_id, scope: :user_id  #user cannot place order with same trip twice
   # in the furture, I want to add a calender system, so each client only can set one trip at same time.
 
+  #if order has review then also need has rating, if an order has rating then also need has review
+  validates_presence_of :rating, if: :review? 
+  validates_presence_of :review, if: :rating? 
+
+
   # for firendly_id gem usage, after use this(another migration), the order url doesn't show id, good for security
   extend FriendlyId
   friendly_id :to_s, use: :slugged
