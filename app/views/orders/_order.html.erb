@@ -1,0 +1,36 @@
+<div class="card mt-3">
+    <div class="card-header">
+    <i class="fa-solid fa-user-ninja"></i>
+    <%= link_to order.user.username, user_path(order.user) %>
+   
+    <i class="fa-solid fa-hourglass"></i>
+    <%= time_ago_in_words(order.updated_at)%>
+
+    <i class="fa-solid fa-signs-post"></i>
+    <%= link_to order.trip, trip_path(order.trip) %>
+    </div>
+
+    <div class="card-body">
+        <p>
+        <i class="fa-solid fa-comment-dots text-success"></i>
+        <small><%= order.review %></small>
+        </p>
+       
+       <%# use times do to set front end view about rating %>
+       <%# don't know how to display front end view when rating is  4.5, 3.5 sth like that %>
+       <p>
+        <% order.rating.times do %>
+            <i class="fa-solid fa-heart text-danger"></i>
+        <% end %>
+        </p>
+    </div>
+    
+    <div class="card-footer">
+        <% if current_user %>
+            <%# more secure at this stage, only order owner can edit review  %>
+            <% if policy(order).edit? %>
+                <%= link_to 'Edit Review', edit_order_path(order) %>
+            <% end %>
+        <% end%>
+    </div>
+</div>

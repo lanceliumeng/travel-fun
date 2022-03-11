@@ -17,11 +17,35 @@
 <table class="table table-bordered table-striped table-sm text-center">
   <thead>
     <tr>
-      <th>Trip</th>
-      <th>User</th>
-      <th>Rating</th>
-      <th>Review</th>
-      <th>Price</th>
+      <th>ID</th>
+      <th>
+      <i class="fa-solid fa-street-view"></i>
+      User
+      </th>
+      <th>
+      <i class="fa-solid fa-map"></i>
+      Trip
+      </th>
+      <th>
+      <i class="fa-solid fa-business-time"></i>
+      Purchased Date
+      </th>
+      <th>
+      <i class="fa-solid fa-dollar-sign text-warning"></i>
+      Price
+      </th>
+      <th>
+      <i class="fa-solid fa-heart text-danger"></i>
+      Rating
+      </th>
+      <th>
+      <i class="fa-solid fa-comment-dots text-success"></i>
+      Review
+      </th>
+      <th>
+      <i class="fa-regular fa-calendar-days text-primary"></i>
+      Review Date
+      </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -29,14 +53,21 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.trip.title %></td>
-        <td><%= order.user.email %></td>
+        <td><%= order.trip.id %></td>
+        <td><%= link_to order.user, user_path(order.user) %></td>
+        <td><%= link_to order.trip, trip_path(order.trip) %></td>
+        <td><%= order.created_at.strftime("%d - %b - %y") %></td>
+        <td><%= number_to_currency(order.price) %></td>
         <td><%= order.rating %></td>
         <td><%= order.review %></td>
-        <td><%= number_to_currency(order.price) %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if order.rating.present? %>
+            <%= order.updated_at.strftime("%d - %b - %y") %>
+          <% end %>
+        </td>
+        <td><%= link_to 'See Review', order %></td>
+        <td><%= link_to 'Add Review', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy Order', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
