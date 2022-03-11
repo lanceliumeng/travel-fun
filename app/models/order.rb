@@ -8,6 +8,10 @@ class Order < ApplicationRecord
   validates_uniqueness_of :trip_id, scope: :user_id  #user cannot place order with same trip twice
   # in the furture, I want to add a calender system, so each client only can set one trip at same time.
 
+  # for firendly_id gem usage, after use this(another migration), the order url doesn't show id, good for security
+  extend FriendlyId
+  friendly_id :to_s, use: :slugged
+
   def to_s  #this method convert to string and it will be used in order edit view
     user.to_s + " " + trip.to_s
   end

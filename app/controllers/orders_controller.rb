@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params[:id])
+      @order = Order.friendly.find(params[:id])  #=> friendly id gem
     end
 
     # Only allow a list of trusted parameters through.
