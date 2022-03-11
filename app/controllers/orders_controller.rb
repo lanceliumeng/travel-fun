@@ -4,7 +4,9 @@ class OrdersController < ApplicationController
   # GET /orders or /orders.json
   def index
     # @orders = Order.all
-    @pagy, @orders = pagy(Order.all)  # gem pagy set up
+    # Ransack gem for for searching/filtering orders
+    @q = Order.ransack(params[:q])
+    @pagy, @orders = pagy(@q.result.includes(:user))  # gem pagy set up, then I can sort users at orders index view
     authorize @orders #for only specific role(order_policy.rb) can do this action
   end
 

@@ -13,6 +13,20 @@
   </div>
 </h3>
 
+<%# front end view cooperate with gem ransack users controller %>
+<div class="form-inline mt-4">
+  <%= search_form_for @q do |f| %>
+    <%= f.search_field :review_cont, placeholder: "reviews search" %>
+    <%= f.search_field :rating_eq, placeholder: "ratings search" %>
+    <%= f.submit "Search", class: "btn btn-sm btn-info" %>
+  <% end %>
+  <div class="ml-2"></div>
+  <%= link_to orders_path, class:"btn btn-sm btn-success" do %>
+    <div class="fa-solid fa-arrows-rotate"></div>
+      refresh
+  <% end %>
+</div>
+
 <div class="table-responsive mt-3">
 <table class="table table-bordered table-striped table-sm text-center">
   <thead>
@@ -20,11 +34,11 @@
       <th>ID</th>
       <th>
       <i class="fa-solid fa-street-view"></i>
-      User
+      Users
       </th>
       <th>
       <i class="fa-solid fa-map"></i>
-      Trip
+      <%= sort_link(@q, :trip_title)%>
       </th>
       <th>
       <i class="fa-solid fa-business-time"></i>
@@ -32,7 +46,7 @@
       </th>
       <th>
       <i class="fa-solid fa-dollar-sign text-warning"></i>
-      Price
+      <%= sort_link(@q, :price)%>
       </th>
       <th>
       <i class="fa-solid fa-heart text-danger"></i>
