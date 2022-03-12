@@ -21,10 +21,11 @@
       <div class="row mt-2"></div>
       <div class="fa-solid fa-calendar-days"></div>
       <%# trip.duration => no need this code, as I create new table belongs to trips table%> 
-      <% if trip.itineraries.count == 1 %> 
-          <%= trip.itineraries.count %> - Day
+      <%# itineraries_count base on counter_cache %>
+      <% if trip.itineraries_count == 1 %> 
+          <%= trip.itineraries_count %> - Day
       <% else %>
-          <%= trip.itineraries.count %> - Days
+          <%= trip.itineraries_count %> - Days
       <% end %>
     </div>
     <%# front end view for average_rating, and how many clients choosed the trip %>

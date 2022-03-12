@@ -22,6 +22,15 @@
   </div>
 
   <div class="card-footer ">
+    <div class="font-weight-bold">
+    Trips Created: <%= user.trips_count%>  <i class="fa-solid fa-map-location-dot"></i>
+    </div>
+    <div class="font-weight-bold"> 
+    Orders: <%=user.orders_count%>  <i class="fa-solid fa-gift"></i>
+    </div>
+  </div>
+
+  <div class="card-footer ">
 
     <small class="text-muted">
         <%= 'sign_in_count:'.humanize %>  

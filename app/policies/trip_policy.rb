@@ -26,4 +26,7 @@ class TripPolicy < ApplicationPolicy
       @user&.has_role?(:admin) || @record.user == @user  #only admin role can delete trips or when users id who match the trips creator id
     end
 
+    def owner?
+      @record.user == @user
+    end
 end

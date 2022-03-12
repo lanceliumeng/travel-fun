@@ -1,5 +1,9 @@
 class Itinerary < ApplicationRecord
-  belongs_to :trip # trips and itineraries table relationship
+  # trips and itineraries table relationship
+  belongs_to :trip, counter_cache: true  #=> The :counter_cache option can be used to make finding the number of belonging objects more efficient.
+  #need run the command in rails console to reset counter: Trip.find_each { |trip| Trip.reset_counters(trip.id, :itineraries) }
+
+
   validates :title, :content, :trip, presence: true  #these columns cannot blank
   has_rich_text :content  #=> for rails action text, when we create new itinerary, content area has more powful function to edit text 
 

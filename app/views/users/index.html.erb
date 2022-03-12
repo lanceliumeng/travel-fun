@@ -49,6 +49,12 @@
       <th>
         <%= "last_sign_in_at".humanize %>
       </th>
+       <th>
+        <%= "created_trips".humanize %>
+      </th>
+       <th>
+        <%= "orders_count".humanize %>
+      </th>
       <th>
          Roles
       </th>
@@ -82,6 +88,12 @@
         </td>
         <td>
           <%= user.last_sign_in_at %>
+        </td>
+         <td>
+          <%= user.trips_count %>
+        </td>
+         <td>
+          <%= user.orders_count %>
         </td>
         <td>
           <% user.roles.each do |role| %> 
