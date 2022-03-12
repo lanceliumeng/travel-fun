@@ -27,10 +27,12 @@
           <%= trip.itineraries.count %> - Days
       <% end %>
     </div>
-    <%# front end view for average_rating %>
+    <%# front end view for average_rating, and how many clients choosed the trip %>
     <div class="card-footer">
       <i class="text-danger fa-solid fa-heart"></i>
       <%= trip.average_rating%>
+      <span class="font-weight-bold"> (<i class="fa-solid fa-face-laugh-beam text-warning"></i> Travellors: <%= trip.orders_count %> ) </span>
+       <%# Count cache orders count:  trip.orders_count is more efficent than trip.orders.count if we have lots of data need to load %>
     </div>
 
     <div class="card-footer ">

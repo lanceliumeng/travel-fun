@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
-  belongs_to :trip
+  belongs_to :trip, counter_cache: true  #=> The :counter_cache option can be used to make finding the number of belonging objects more efficient.
+  #need run the command in rails console to reset counter: Trip.find_each { |trip| Trip.reset_counters(trip.id, :orders) }
   belongs_to :user
   
   #order model validations:
