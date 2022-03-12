@@ -56,5 +56,5 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
   #track activities routes:
   get 'track_activities', to: 'static_pages#track_activities', as: 'track_activities'
-  
+
 end
