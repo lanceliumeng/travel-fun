@@ -21,6 +21,9 @@ class Order < ApplicationRecord
     user.to_s + " " + trip.to_s
   end
 
+  # this scope for trips controller pending_review action
+  scope :pending_review, -> { where(rating: [0, nil, ""], review: [0, nil, ""])}
+
   #business logic: if user is company operator, they can create trip plan, but they cannot use that account to buy the trip.
   validate :cannot_buy_own_trip 
   protected

@@ -8,7 +8,7 @@
 <%# update trips listing layout below %>
 <h3>
   <div class="text-center my-3">
-    Listing Trips, now we have:
+    Listing Trips, now you have:
     <div class="badge badge-info">
       <%= @trips.count %> Trips
     </div>
@@ -20,7 +20,7 @@
     <%# update the below @q to @ransack_trips %>
     <%# search_form_for @q do |f| %>
 
-    <%= search_form_for @ransack_trips, as: :trips_search, url: trips_path do |f|%>
+    <%= search_form_for @ransack_trips, as: :trips_search, url: @ransack_path do |f|%>
       <%= f.label :title %>
       <%= f.search_field :title_cont, placeholder: 'Title', class: 'form-control form-control-sm' %>
      
@@ -45,7 +45,7 @@
       
       <%= f.submit %>
     <% end %>
-    <%= link_to 'refresh', trips_path %>
+    <%= link_to 'refresh', @ransack_path %>
   </div>
 
   <div class="col-md-10">

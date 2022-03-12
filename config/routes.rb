@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :orders
+  resources :orders do
+    get :my_clients, on: :collection
+  end
    #orders routes
   #  get '/orders', to: 'orders#index', as: 'orders' #=> orders_path
   #  post '/orders', to: 'orders#create'
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
   # Rails provides a special resources notation, it will automatically generate above routes
   # I have commented above simple routes, try to use reouseces notation + nest resources to let ininerary in trip
     resources :trips  do
+      get :brought, :pending_review, :designed, on: :collection  #the route for trips controller brought, pending review and desigend trip action
       resources :itineraries
       resources :orders, only: [:new, :create]
     end

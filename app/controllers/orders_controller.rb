@@ -5,10 +5,20 @@ class OrdersController < ApplicationController
   def index
     # @orders = Order.all
     # Ransack gem for for searching/filtering orders
+    @ransack_path = orders_path
     @q = Order.ransack(params[:q])
     @pagy, @orders = pagy(@q.result.includes(:user))  # gem pagy set up, then I can sort users at orders index view
     authorize @orders #for only specific role(order_policy.rb) can do this action
   end
+  
+  # def my clients method which let operator find the trips belong to current operator user and they are going to find the orders in these trips 
+  def my_clients
+    @ransack_path = my_clients_orders_path  #=> search field only show the operator's clients not all clients
+    @q = Order.joins(:trip).where(trips: {user: current_user} ).ransack(params[:q])
+    @pagy, @orders = pagy(@q.result.includes(:user))
+    render 'index'
+  end
+
 
   # GET /orders/1 or /orders/1.json
   def show

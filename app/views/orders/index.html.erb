@@ -16,14 +16,14 @@
 <%# front end view cooperate with gem ransack users controller %>
 <%# below function is kind of like a part of company management system, admin and operator can do search for users %>
 <div class="form-inline mt-4">
-  <%= search_form_for @q do |f| %>
+  <%= search_form_for @q, url: @ransack_path do |f| %>
     <%= f.search_field :user_email_cont, placeholder: "users search" %>
     <%= f.search_field :review_cont, placeholder: "reviews search" %>
     <%= f.search_field :rating_eq, placeholder: "ratings search" %>
     <%= f.submit "Search", class: "btn btn-sm btn-info" %>
   <% end %>
   <div class="ml-2"></div>
-  <%= link_to orders_path, class:"btn btn-sm btn-success" do %>
+  <%= link_to @ransack_path, class:"btn btn-sm btn-success" do %>
     <div class="fa-solid fa-arrows-rotate"></div>
       refresh
   <% end %>

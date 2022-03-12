@@ -22,8 +22,33 @@ class TripsController < ApplicationController
     
     #thrid update, because used ransack gem, and set set_navbar_search method at application controller
     # so need to change above default @q variable to same as set_navbar_search method variable
+    @ransack_path = trips_path
     @ransack_trips = Trip.ransack(params[:trips_search], search_key: :trips_search)
     @pagy, @trips = pagy(@ransack_trips.result.includes(:user))  # gem pagy set up
+  end
+
+  #def brought action when client user purchased the trip
+  def brought
+    @ransack_path = brought_trips_path
+    @ransack_trips = Trip.joins(:orders).where(orders: {user: current_user}).ransack(params[:trips_search], search_key: :trips_search)
+    @pagy, @trips = pagy(@ransack_trips.result.includes(:user))
+    render 'index'
+  end
+
+  #def pending review action when client brought a trip but the trip didn't has a review
+  def pending_review
+    @ransack_path = pending_review_trips_path
+    @ransack_trips = Trip.joins(:orders).merge(Order.pending_review.where(user: current_user)).ransack(params[:trips_search], search_key: :trips_search)
+    @pagy, @trips = pagy(@ransack_trips.result.includes(:user))
+    render 'index'
+  end
+
+  # def designed trip action for operator use who has created the travel plan
+  def designed
+    @ransack_path = designed_trips_path
+    @ransack_trips = Trip.where(user: current_user).ransack(params[:trips_search], search_key: :trips_search)
+    @pagy, @trips = pagy(@ransack_trips.result.includes(:user))
+    render 'index'
   end
 
   # set variable to collect itineraries,display it in trips show page
