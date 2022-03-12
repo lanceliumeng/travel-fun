@@ -21,6 +21,17 @@ class Order < ApplicationRecord
     user.to_s + " " + trip.to_s
   end
 
+  # for update average rating only for no rating or rating is 0
+  after_save do
+    unless rating.nil? || rating.zero?
+      trip.update_rating
+    end
+  end
+
+  after_destroy do
+    trip.update_rating
+  end
+
   # this scope for trips controller pending_review action
   scope :pending_review, -> { where(rating: [0, nil, ""], review: [0, nil, ""])}
 

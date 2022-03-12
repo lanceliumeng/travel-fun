@@ -39,4 +39,13 @@ class Trip < ApplicationRecord
          #=> which means the user cannot join another different tour from tomorrow. 
     end
 
+    #this method(order.rb file) allows when clients give new rating or update rating, it will update the average rating column for the trip
+    # https://apidock.com/rails/ActiveRecord/Persistence/update_column
+    def update_rating
+        if orders.any? && orders.where.not(rating: nil).any?
+            update_column :average_rating, (orders.average(:rating).round(2).to_f)
+        else 
+            update_column :average_rating, (0)
+        end
+    end
 end
