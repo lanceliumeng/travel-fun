@@ -27,7 +27,8 @@ class TripsController < ApplicationController
     @pagy, @trips = pagy(@ransack_trips.result.includes(:user))  # gem pagy set up
   end
 
-  #def brought action when client user purchased the trip
+  #def brought action when client user purchased the trip 
+  # when current user is operator, if the user do search, then only can search the trips belongs to him, not for all trips
   def brought
     @ransack_path = brought_trips_path
     @ransack_trips = Trip.joins(:orders).where(orders: {user: current_user}).ransack(params[:trips_search], search_key: :trips_search)

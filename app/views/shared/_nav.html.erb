@@ -78,7 +78,7 @@
           <div aria-labelledby="adminDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to users_path, class: "dropdown-item" do %>
               <div class="fa-solid fa-users-gear"></div>
-              <b> Users Community</b>
+              <b> Users Community <span class="badge badge-warning"> <%= User.count %></span></b>
             <% end %>
 
             <%= link_to track_activities_path, class: "dropdown-item" do %>
@@ -88,7 +88,7 @@
 
             <%= link_to orders_path, class: "dropdown-item" do %>
                <div class="fa-solid fa-cart-shopping"></div>
-               <b> All Orders </b>
+               <b> All Orders <span class="badge badge-warning"> <%= Order.count %></span> </b>
             <% end %>
           </div>
         </li>
@@ -110,12 +110,12 @@
 
             <%= link_to designed_trips_path, class: "dropdown-item" do %>
               <i class="fa-solid fa-road"></i>
-              <b> Travel Plans </b>
+              <b> Travel Plans <span class="badge badge-primary"> <%= current_user.trips.count %></span> </b>
             <% end %>
 
             <%= link_to my_clients_orders_path, class: "dropdown-item" do %>
               <i class="fa-solid fa-user-astronaut"></i>
-              <b> My Clients </b>
+              <b> My Clients <span class="badge badge-primary"> <%= Order.joins(:trip).where(trips: {user: current_user}).count %></span></b>
             <% end %>
           </div>
         </li>
@@ -126,18 +126,18 @@
         <li class="nav-item dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
             <div class="fa-solid fa-paper-plane"></div>
-            <b>Travel Plan</b>
+            <b>Travel Plan </b>
           </a>
           <%# link to brought_trips_path and pending_review_path %>
            <div aria-labelledby="operatorDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to brought_trips_path, class: "dropdown-item" do %>
               <i class="fa-solid fa-basket-shopping"></i>
-              <b> Brought Trips </b>
+              <b> Brought Trips <span class="badge badge-success"> <%= current_user.orders.count %></span> </b>
             <% end %>
 
             <%= link_to pending_review_trips_path, class: "dropdown-item" do %>
               <i class="fa-solid fa-wand-magic-sparkles"></i>
-              <b> Pending Review </b>
+              <b> Pending Review <span class="badge badge-danger"> <%= current_user.orders.pending_review.count %></span> </b>
             <% end %>
           </div>
         </li>
