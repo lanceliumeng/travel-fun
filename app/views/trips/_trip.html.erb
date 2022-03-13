@@ -17,16 +17,8 @@
     
     <div class="card-footer font-italic">
       <div class="fa-solid fa-circle-info"> </div> 
-      <span class="font-weight-bold"> <%= trip.brief_info %> </span>
-      <div class="row mt-2"></div>
-      <div class="fa-solid fa-calendar-days"></div>
-      <%# trip.duration => no need this code, as I create new table belongs to trips table%> 
-      <%# itineraries_count base on counter_cache %>
-      <% if trip.itineraries_count == 1 %> 
-          <%= trip.itineraries_count %> - Day
-      <% else %>
-          <%= trip.itineraries_count %> - Days
-      <% end %>
+        <span class="font-weight-bold"> Brief Information: </span>
+        <%= trip.brief_info %> 
     </div>
     <%# front end view for average_rating, and how many clients choosed the trip %>
     <div class="card-footer">
@@ -39,17 +31,35 @@
     <div class="card-footer ">
       <div class="row"></div>
       <div class="fa-solid fa-language"></div>
-      <%= trip.language %>
+      <span class="font-weight-bold"> Tour language: </span> <%= trip.language %>
+      
       <div class="row"></div>
-      <div class="fa-solid fa-magnifying-glass-dollar"></div> 
+      <div class="fa-solid fa-calendar-days"></div>
+      <span class="font-weight-bold"> Tour Duration: </span>
+      <%# trip.duration => no need this code, as I create new table belongs to trips table%> 
+      <%# itineraries_count base on counter_cache %>
+      <% if trip.itineraries_count == 1 %> 
+          <%= trip.itineraries_count %> - Day
+      <% else %>
+          <%= trip.itineraries_count %> - Days
+      <% end %>
+     </div>
+
+    <div class="card-footer ">
+      <div class="row"></div>
       <%# trip_helper method %>
       <%= order_button(trip)%>
+      
       <div class="row"></div>
-      <div class="fa-solid fa-pen-to-square"></div>
       <%= review_button(trip)%>
     </div>
+  
 
-
+    <%# each trip links are card footer as well  %>
+    <%# users authorization check %>
+    <%# if current user is client, then they do need have the below views %>
+    <% if current_user %>
+    <% if policy(trip).edit? %> 
     <%# each trip created time and user is card footer  %>
     <div class="card-footer">
       <div class="far fa-clock"></div>
@@ -60,10 +70,6 @@
       Created by: <%= link_to trip.user.username, user_path(trip.user)%> 
     </div>
 
-    <%# each trip links are card footer as well  %>
-    <%# users authorization check %>
-    <% if current_user %>
-    <% if policy(trip).edit? %> 
     <div class="card-footer">
     <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-sm btn-info' %>
     <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>

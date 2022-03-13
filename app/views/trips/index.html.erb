@@ -1,6 +1,6 @@
 <%# dynamic title for trip show page => trips show page title should like Travel-Fun/All Trips%> 
 <% content_for :title do %>
-  Travel Fun/All Trips
+  Travel Fun/<%= action_name.humanize%> trips
 <% end %>
 
 <p id="notice"><%= notice %></p>
@@ -8,7 +8,8 @@
 <%# update trips listing layout below %>
 <h3>
   <div class="text-center my-3">
-    Listing Trips, now you have:
+    <%= action_name.humanize%>
+     trips
     <div class="badge badge-info">
       <%= @trips.count %> Trips
     </div>

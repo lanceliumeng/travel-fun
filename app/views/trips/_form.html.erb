@@ -13,7 +13,8 @@
     <small><%= f.error :description, class: 'text-danger' %></small> 
     <%# end: for action text form view %>
 
-     <%= f.input :brief_info %>
+    <%= f.label :brief_info %>
+    <%= f.rich_text_area :brief_info %> 
      <%# collection: ["English", "Chinese(Simplified)", "Chinese(Traditional)", "Korean", "Japanese"] %>
      <%# include_blank allows blank area when we creating new trip, more flexable %>
      <%= f.input :language, collection: Trip.languages, include_blank: true %>

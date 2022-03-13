@@ -6,9 +6,12 @@ class Trip < ApplicationRecord
     belongs_to :user, counter_cache: true  #=> The :counter_cache option can be used to make finding the number of belonging objects more efficient.
     #need run the command in rails console to reset counter: User.find_each { |user| User.reset_counters(user.id, :trips) }
     
-    has_rich_text :description  #=> for rails action text, when we create new trip, description area has more powful function to edit text 
+    has_rich_text :description #=> for rails action text, when we create new trip, description area has more powful function to edit text 
+    has_rich_text :brief_info #=> for rails action text, when we create new trip, brief info area has more powful function to edit text 
     has_many :itineraries, dependent: :destroy # trips and itineraries table relationship, if trip has some itineraries are deleted, the itineraries are also deleted
     has_many :orders # trips and orders table relations
+
+    validates :title, uniqueness: true 
 
     def to_s
         title

@@ -10,12 +10,10 @@
     </div>
 
     <%# each itinerary content is card body  %>
-     <% if policy(itinerary).show? %>
         <div class="card-body">
         <%= itinerary.content %>
         </div>
-     <% end %>
-
+        
     <%# buttons for card footer  %>
     <%# users authorization check %>
      <% if policy(itinerary).edit? %>

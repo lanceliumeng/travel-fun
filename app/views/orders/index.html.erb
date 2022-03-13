@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 <%# dynamic title for orders page %> 
 <% content_for :title do %>
-  Travel Fun/All orders
+  Travel Fun/<%= action_name.humanize%> orders
 <% end %>
 
 <h3>
   <div class="text-center mt-3">
-   Order Lists:
+    <%= action_name.humanize%>
+    orders
     <div class="badge badge-info">
       <%= @orders.count %>
     </div>

@@ -23,10 +23,17 @@ module TripsHelper
         if current_user
             if user_trip.any? #=> if current user has ordered the trip
                 if user_trip.where(rating:[0, nil, ""], review:[0, nil, ""]).any? #=> if they don't leave any review and rating, then can add review
-                    link_to "Add a review", edit_order_path(user_trip.first)
+                    link_to edit_order_path(user_trip.first) do
+                        "<i class='fa-brands fa-gratipay text-danger'></i>".html_safe + " " +
+                        "<i class='fa-solid fa-pen-to-square text-info'></i>".html_safe + " " +
+                        'Add a review'
+                    end
                 else  #=> else give them plain text to notice, in the furture, I want to add user can edit their reviews
-                    "You have left a review. Thank you!"
-                    link_to "Click me to check your review", order_path(user_trip.first)
+                    link_to order_path(user_trip.first) do
+                        "<i class='fa-solid fa-heart text-danger'></i>".html_safe + " " +
+                        "<i class='fa-solid fa-circle-check text-success'></i>".html_safe + " " +
+                        'Thanks for your review'
+                    end
                 end
             end
         end
