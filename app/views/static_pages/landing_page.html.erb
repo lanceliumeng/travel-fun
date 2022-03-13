@@ -33,8 +33,9 @@
       <%# Search Bar End %>
 </div>
 
-<%# for bootstrap card group format %>
+<%# for bootstrap card group format I%>
 <div class="card-group">
+
   <%# card body 01 - Porpular Trips %>
   <div class="card card-body">
         <h1 class="text-warning">
@@ -47,6 +48,7 @@
             Let's explore a variety of trips
         </div>
   </div>
+
   <%# card body 02 - Professional Trip Designer %>
   <div class="card card-body">
         <h1 class="text-info">
@@ -59,6 +61,7 @@
             Find the right trip only for you
         </div>
   </div>
+
   <%# card body 03 - Active Users %>
    <div class="card card-body">
         <h1 class="text-success">
@@ -71,6 +74,7 @@
             Welcome to join our traveller and designer community
         </div>
   </div>
+
   <%# card body 04 - Adventure Explore Tasmania %>
    <div class="card card-body">
         <h1 class="text-primary">
@@ -86,31 +90,44 @@
   
 </div>
 
+<hr class="my-4">
+<%# start: partial page for carousel images %>
+<%=render 'carousel'%>
+<%# end %>
 
-<%# for 3 trips sections %>
+<%# for 4 trips sections %>
 <hr class="my-4">
-<h2> Popular Trips </h2>
+<h2> <i class="fa-brands fa-telegram text-success"></i> Your Travel Plan  </h2>
 <div class="card-columns">
    <%# use ruby each method to list each trip in card format %>
-  <% @trips.each do |trip| %>
+  <% @purchased_trips.each do |trip| %>
     <%= render 'trips/trip', trip: trip %>
   <% end %>
 </div>
+
 <hr class="my-4">
-<h2> Top Rated Trips </h2>
+<h2> <i class="fa-solid fa-fire-flame-curved text-warning"></i>  Popular Trips </h2>
 <div class="card-columns">
    <%# use ruby each method to list each trip in card format %>
-  <% @trips.each do |trip| %>
+  <% @popluar_trips.each do |trip| %>
     <%= render 'trips/trip', trip: trip %>
   <% end %>
 </div>
+
 <hr class="my-4">
-<h2> New Trips </h2>
+<h2> <i class="fa-solid fa-star text-warning"></i> Top Rated Trips  </h2>
+<div class="card-columns">
+   <%# use ruby each method to list each trip in card format %>
+  <%  @top_rated_trips.each do |trip| %>
+    <%= render 'trips/trip', trip: trip %>
+  <% end %>
+</div>
+
+<hr class="my-4">
+<h2> <i class="fa-solid fa-clock text-info"></i> New Trips  </h2>
 <div class="card-columns">
    <%# use ruby each method to list each trip in card format %>
   <% @new_trips.each do |new_trip| %>
     <%= render 'trips/trip', trip: new_trip %>
   <% end %>
 </div>
-
-
