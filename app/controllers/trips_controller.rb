@@ -55,6 +55,7 @@ class TripsController < ApplicationController
   # set variable to collect itineraries,display it in trips show page
   def show
     @itineraries = @trip.itineraries
+    @orders_with_reviews = @trip.orders.reviewed #reviewed is already setup scope in order model
   end
 
   # GET /trips/new

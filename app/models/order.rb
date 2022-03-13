@@ -16,6 +16,7 @@ class Order < ApplicationRecord
   validates_presence_of :rating, if: :review? 
   validates_presence_of :review, if: :rating? 
 
+  scope :reviewed, -> { where.not(review: [0, nil, ""]) } #scope for trips controller show action call
 
   # for firendly_id gem usage, after use this(another migration), the order url doesn't show id, good for security
   extend FriendlyId

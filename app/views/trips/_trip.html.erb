@@ -15,11 +15,6 @@
       <%= trip.description %>
     </div>
     
-    <div class="card-footer font-italic">
-      <div class="fa-solid fa-circle-info"> </div> 
-        <span class="font-weight-bold"> Brief Information: </span>
-        <%= trip.brief_info %> 
-    </div>
     <%# front end view for average_rating, and how many clients choosed the trip %>
     <div class="card-footer">
       <i class="text-danger fa-solid fa-heart"></i>
@@ -71,8 +66,12 @@
     </div>
 
     <div class="card-footer">
-    <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-sm btn-info' %>
-    <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+      <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-sm btn-info' %>
+      <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+      <%# only trip owner creator can see this button %>
+      <% if policy(trip).owner? %> 
+      <%= link_to 'Add New Itinerary', new_trip_itinerary_path(trip, @itinerary), class: 'btn btn-success btn-sm' %>
+      <% end %>
     </div>
     <% end %>
     <% end %>
