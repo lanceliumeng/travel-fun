@@ -15,9 +15,25 @@ class StaticPagesController < ApplicationController
     @top_rated_trips = Trip.order(average_rating: :desc, created_at: :desc).limit(3)
   end
 
-  # public_activity gem setup, puls track_activities views and routes, we can display uses CRUD history 
+  # public_activity gem setup, puls track_activities views and routes, we can display users CRUD history
+  # only admin user can check this page
   def track_activities
+    if current_user.has_role?(:admin)
     @activities = PublicActivity::Activity.all
+    else
+      redirect_to root_path, alert: "You don't have authorization to check this page"
+    end
+  end
+
+  # for analytics view call, only admin role can check this view
+  def analytics
+    if current_user.has_role?(:admin)
+      @users = User.all
+      @orders = Order.all
+      @trips = Trip.all
+    else 
+      redirect_to root_path, alert: "You don't have authorization to check this page"
+    end
   end
 
   def privacy_policy

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :orders do
     get :my_clients, on: :collection
   end
-   #orders routes
+  #orders routes
   #  get '/orders', to: 'orders#index', as: 'orders' #=> orders_path
   #  post '/orders', to: 'orders#create'
   #  get '/orders/new', to: 'orders#new', as: 'new_order' #=>new_order_path
@@ -57,7 +57,8 @@ Rails.application.routes.draw do
   root 'static_pages#landing_page'
   #privacy policy page route
   get 'privacy_policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
-  #track activities routes:
+  #track activities route:
   get 'track_activities', to: 'static_pages#track_activities', as: 'track_activities'
-
+  #analytics route:
+  get 'analytics', to: 'static_pages#analytics', as: 'analytics'
 end

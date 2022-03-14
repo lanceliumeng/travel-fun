@@ -81,14 +81,19 @@
               <b> Users Community <span class="badge badge-warning"> <%= User.count %></span></b>
             <% end %>
 
+            <%= link_to orders_path, class: "dropdown-item" do %>
+               <div class="fa-solid fa-cart-shopping"></div>
+               <b> All Orders <span class="badge badge-warning"> <%= Order.count %></span> </b>
+            <% end %>
+
             <%= link_to track_activities_path, class: "dropdown-item" do %>
                <div class="fa-solid fa-clipboard"></div>
                <b> Operation Record </b>
             <% end %>
 
-            <%= link_to orders_path, class: "dropdown-item" do %>
-               <div class="fa-solid fa-cart-shopping"></div>
-               <b> All Orders <span class="badge badge-warning"> <%= Order.count %></span> </b>
+            <%= link_to analytics_path, class: "dropdown-item" do %>
+               <div class="fa-solid fa-chart-bar"></div>
+               <b> Analytics </b>
             <% end %>
           </div>
         </li>

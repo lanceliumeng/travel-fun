@@ -20,3 +20,6 @@ ActiveStorage.start();
 // import "@rails/actiontext"
 require("trix")
 require("@rails/actiontext")
+
+// for gem chartkick
+import "chartkick/chart.js"

@@ -1,0 +1,14 @@
+<div class="mt-5">
+    <h4>User Created</h4>
+    <%= line_chart @users.group_by_hour(:created_at).count %>
+</div>
+
+<div class="mt-5">
+    <h4>Orders Created</h4>
+    <%= bar_chart @orders.group_by_day(:created_at).count %>
+</div>
+
+<div class="mt-5">
+    <h4>Trips popularity</h4>
+    <%= column_chart @orders.joins(:trip).group(:'trips.title').count %>
+</div>
