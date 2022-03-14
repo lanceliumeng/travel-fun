@@ -6,6 +6,14 @@ class TripPolicy < ApplicationPolicy
     end
   end
 
+    def show?  #this policy for security issue, if no this one, client user still can input trip url to find ununblished and unapproved trip
+      # This way a user can see the trip if:
+      (@record.published && @record.approved) ||  # it is published or approved OR
+      (@user.present? && @user&.has_role?(:admin)) ||  # user is admin OR
+      (@user.present? && @record.user == @user) ||  # user is the creator of the trip OR
+      (@record.purchased(@user)) #the user purchased the trip (client)
+    end 
+
     def edit?  #Ruby Safe navigation operator & can solve log out error bug =>  @user&.has_role?(:admin) = @user.present? && @user.has_role?:admin
       @user&.has_role?(:admin) || @record.user == @user  # only admin or when users object who match the trips creator object
     end

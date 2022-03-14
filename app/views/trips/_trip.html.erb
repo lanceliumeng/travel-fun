@@ -1,6 +1,6 @@
 <%# this is partial _trips veiw + bootstrap card format %>
 
-<div class="card">
+<div class="card shadow">
   <%# each img for travel trip %>
   <%# <img class="card-img-top" src="..." alt="Card image cap">    %>
 
@@ -66,7 +66,7 @@
         <%# .username is method in user model, cam makes website more readable %>
         Created by: <%= link_to trip.user.username, user_path(trip.user)%> 
       </div>
-
+       <% end %>
       <%# card footer 02 for buttons %>
       <%# only trip owner creator can see this buttons %>
       <% if policy(trip).owner? %> 
@@ -76,6 +76,8 @@
         <%= link_to 'Add Itinerary', new_trip_itinerary_path(trip, @itinerary), class: 'btn btn-sm btn-success ' %>
       </div>
       <% end %>
+
+    <% if policy(trip).edit? %> 
       <%# card footer 03 for badges %>
       <div class="card-footer">
         <span class="font-weight-bold">Status:</span>
@@ -100,7 +102,8 @@
           <% end %>
       </div>
       <% end %>
-
-     <% end %>
+      
+    <% end %>
+    
     <% end %>
 </div>
