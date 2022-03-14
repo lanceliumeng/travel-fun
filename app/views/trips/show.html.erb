@@ -36,7 +36,7 @@
         <%# trip_itinerary_path @trip,@itinerary => localhost:3000/trips/trip.id/itinerary/itinerary.id %>
         <%# render partial page itinerary for exactly trip %>
             <h4 class="pl-2">
-            <i class="fa-solid fa-list"></i> <%=@trip.itineraries_count%> Day Tours
+            <i class="fa-solid fa-list"></i> <%= pluralize(@trip.itineraries_count,"Day")%> Tour
             </h4>
             <p></p>
             
@@ -47,7 +47,7 @@
             </div>
 
             <h4 class="pl-2">
-            <i class="fa-solid fa-list"></i> <%= @orders_with_reviews.count %> Reviews
+            <i class="fa-solid fa-list"></i> <%= pluralize(@orders_with_reviews.count,"Review") %> 
             </h4>
              <% @orders_with_reviews.each do |order|%>
                 <%= render 'orders/order', order: order%>
