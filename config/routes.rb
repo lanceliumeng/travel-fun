@@ -33,7 +33,15 @@ Rails.application.routes.draw do
   # Rails provides a special resources notation, it will automatically generate above routes
   # I have commented above simple routes, try to use reouseces notation + nest resources to let ininerary in trip
     resources :trips  do
-      get :brought, :pending_review, :designed, on: :collection  #the route for trips controller brought, pending review and desigend trip action
+      get :brought, :pending_review, :designed, :unapproved,  on: :collection  #the route for trips controller brought, pending review and desigend trip action
+      member do  
+        patch :approve 
+        patch :unapprove
+      end
+      #  member do for the routes below 
+      #  approve_trip PATCH '/trips/:id/approve', to: 'trips#approve', as: 'approve_trip'
+      #  unapprove_trip PATCH '/trips/:id/unapprove', to: 'trips#unapprove', as: 'unapprove_trip'
+
       resources :itineraries
       resources :orders, only: [:new, :create]
     end

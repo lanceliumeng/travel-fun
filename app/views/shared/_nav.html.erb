@@ -76,14 +76,20 @@
             <b>Admin Manager</b>
           </a>
           <div aria-labelledby="adminDropdown" class="dropdown-menu dropdown-menu-right">
-            <%= link_to users_path, class: "dropdown-item" do %>
+            
+           <%= link_to unapproved_trips_path, class: "dropdown-item" do %>
               <div class="fa-solid fa-users-gear"></div>
-              <b> Users Community <span class="badge badge-warning"> <%= User.count %></span></b>
+            <b>Trip unapprove list</b> <span class="badge badge-warning"> <%= Trip.unapproved.count %></span></b>
             <% end %>
 
             <%= link_to orders_path, class: "dropdown-item" do %>
                <div class="fa-solid fa-cart-shopping"></div>
                <b> All Orders <span class="badge badge-warning"> <%= Order.count %></span> </b>
+            <% end %>
+
+            <%= link_to users_path, class: "dropdown-item" do %>
+              <div class="fa-solid fa-users-gear"></div>
+              <b> Users Community <span class="badge badge-warning"> <%= User.count %></span></b>
             <% end %>
 
             <%= link_to track_activities_path, class: "dropdown-item" do %>

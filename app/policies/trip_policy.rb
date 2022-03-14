@@ -7,11 +7,11 @@ class TripPolicy < ApplicationPolicy
   end
 
     def edit?  #Ruby Safe navigation operator & can solve log out error bug =>  @user&.has_role?(:admin) = @user.present? && @user.has_role?:admin
-      @user&.has_role?(:admin) || @record.user == @user  #only admin role can edit trips or when users id who match the trips creator id
+      @user&.has_role?(:admin) || @record.user == @user  # only admin or when users object who match the trips creator object
     end
 
     def update?
-      @user&.has_role?(:admin) || @record.user == @user  #only admin role can update trips or when users id who match the trips creator id
+      @record.user == @user  # when users object who match the trips creator object
     end
 
     def new?
@@ -28,5 +28,9 @@ class TripPolicy < ApplicationPolicy
 
     def owner?
       @record.user == @user
+    end
+
+    def approve? 
+      @user&.has_role?(:admin)  #only admin role can approve the trips
     end
 end

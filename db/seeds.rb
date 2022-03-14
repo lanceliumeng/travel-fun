@@ -11,11 +11,12 @@
 
 PublicActivity.enabled = false
 # random db for first test:
-30.times do 
+5.times do 
     Trip.create([{
         title: Faker::FunnyName.three_word_name,
         description: Faker::TvShows::AquaTeenHungerForce.quote,
         user_id: User.first.id,
+        # user: User.find_by(email: "admin@test.com"),
         brief_info: Faker::Quote.famous_last_words,
         duration: '5-Days-4-Nights',
         language: 'English',

@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy, :approve, :unapprove]
 
   # index action, trips_path will show all trips to browser.
   def index
@@ -23,8 +23,10 @@ class TripsController < ApplicationController
     #thrid update, because used ransack gem, and set set_navbar_search method at application controller
     # so need to change above default @q variable to same as set_navbar_search method variable
     @ransack_path = trips_path
-    @ransack_trips = Trip.ransack(params[:trips_search], search_key: :trips_search)
+    # for _trip view, only can see the trips if them are published and approved
+    @ransack_trips = Trip.published.approved.ransack(params[:trips_search], search_key: :trips_search)
     @pagy, @trips = pagy(@ransack_trips.result.includes(:user))  # gem pagy set up
+    render 'index'
   end
 
   #def brought action when client user purchased the trip 
@@ -51,6 +53,28 @@ class TripsController < ApplicationController
     @pagy, @trips = pagy(@ransack_trips.result.includes(:user))
     render 'index'
   end
+
+   # def unapproved trip action for admin can check if there are any trips status is unapprove
+   def unapproved
+    @ransack_path = unapproved_trips_path
+    @ransack_trips = Trip.unapproved.ransack(params[:trips_search], search_key: :trips_search)
+    @pagy, @trips = pagy(@ransack_trips.result.includes(:user))
+    render 'index'
+  end
+
+  # start: all trips need admin to check then decide they can be approved or not
+  def approve
+    authorize @trip, :approve?  #for only damin role(trip_policy.rb) can do this action
+    @trip.update_attribute(:approved, true)
+    redirect_to @trip, notice: "Trip is approved and now it can be visible."
+  end
+
+  def unapprove
+    authorize @trip, :approve?  #for only damin role(trip_policy.rb) can do this action
+    @trip.update_attribute(:approved, false)
+    redirect_to @trip, notice: "Trip is unapproved and the creator needs to double check details."
+  end
+  #end
 
   # set variable to collect itineraries,display it in trips show page
   def show
@@ -125,6 +149,6 @@ class TripsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def trip_params
-      params.require(:trip).permit(:title, :description, :brief_info, :language, :duration, :price)
+      params.require(:trip).permit(:title, :description, :brief_info, :published, :language, :duration, :price)
     end
 end
