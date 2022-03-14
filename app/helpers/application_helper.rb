@@ -28,4 +28,25 @@ module ApplicationHelper
         end
     end
 
+    # these methods is for track activities front end style
+    def activity_crud_icon(key)
+        case key 
+        when 'create'
+            '<i class="fa-solid fa-circle-plus"></i>'.html_safe
+        when 'update'
+            '<i class="fa-solid fa-wrench"></i>'.html_safe
+        when 'destroy'
+            '<i class="fa-solid fa-eraser"></i>'.html_safe
+        end
+    end
+
+    def model_icon(model)
+        case model 
+        when 'Trip'
+            '<i class="fa-solid fa-map-location-dot"></i>'.html_safe
+        when 'Itinerary'
+            '<i class="fa fa-route"></i>'.html_safe
+        end
+    end
+
 end

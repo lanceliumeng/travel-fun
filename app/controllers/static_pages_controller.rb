@@ -19,7 +19,8 @@ class StaticPagesController < ApplicationController
   # only admin user can check this page
   def track_activities
     if current_user.has_role?(:admin)
-    @activities = PublicActivity::Activity.all
+      # let track_activities order always start from the newest created time at front end page
+      @pagy, @activities = pagy(PublicActivity::Activity.all.order(created_at: :desc))
     else
       redirect_to root_path, alert: "You don't have authorization to check this page"
     end

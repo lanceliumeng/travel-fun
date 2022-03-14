@@ -72,33 +72,33 @@
       <% if current_user.has_role?(:admin) %>
         <li class="nav-item dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
-            <div class="fa-solid fa-crown"></div>
+            <i class="fa-solid fa-crown"></i>
             <b>Admin Manager</b>
           </a>
           <div aria-labelledby="adminDropdown" class="dropdown-menu dropdown-menu-right">
             
            <%= link_to unapproved_trips_path, class: "dropdown-item" do %>
-              <div class="fa-solid fa-users-gear"></div>
+              <i class="fa-solid fa-users-gear"></i>
             <b>Trip unapprove list</b> <span class="badge badge-warning"> <%= Trip.unapproved.count %></span></b>
             <% end %>
 
             <%= link_to orders_path, class: "dropdown-item" do %>
-               <div class="fa-solid fa-cart-shopping"></div>
+               <i class="fa-solid fa-cart-shopping"></i>
                <b> All Orders <span class="badge badge-warning"> <%= Order.count %></span> </b>
             <% end %>
 
             <%= link_to users_path, class: "dropdown-item" do %>
-              <div class="fa-solid fa-users-gear"></div>
+              <i class="fa-solid fa-users-gear"></i>
               <b> Users Community <span class="badge badge-warning"> <%= User.count %></span></b>
             <% end %>
 
             <%= link_to track_activities_path, class: "dropdown-item" do %>
-               <div class="fa-solid fa-clipboard"></div>
+               <i class="fa-solid fa-clipboard"></i>
                <b> Operation Record </b>
             <% end %>
 
             <%= link_to analytics_path, class: "dropdown-item" do %>
-               <div class="fa-solid fa-chart-bar"></div>
+               <i class="fa-solid fa-chart-bar"></i>
                <b> Analytics </b>
             <% end %>
           </div>
