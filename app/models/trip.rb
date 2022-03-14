@@ -9,7 +9,7 @@ class Trip < ApplicationRecord
     has_rich_text :description #=> for rails action text, when we create new trip, description area has more powful function to edit text 
     has_rich_text :brief_info #=> for rails action text, when we create new trip, brief info area has more powful function to edit text 
     has_many :itineraries, dependent: :destroy # trips and itineraries table relationship, if trip has some itineraries are deleted, the itineraries are also deleted
-    has_many :orders # trips and orders table relations
+    has_many :orders, dependent: :restrict_with_error # trips and orders table relations, if any trip be ordered, it cannot be deleted
 
     validates :title, uniqueness: true 
 

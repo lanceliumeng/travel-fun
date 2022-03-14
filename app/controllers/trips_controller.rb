@@ -105,11 +105,16 @@ class TripsController < ApplicationController
   # DELETE /trips/1 or /trips/1.json
   def destroy
     authorize @trip #for only specific role(trip_policy.rb) can do this action
-    @trip.destroy
-    respond_to do |format|
-      format.html { redirect_to trips_url, notice: "Trip was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    # if no any orders relate with trip, then the trip can be deleted
+      if @trip.destroy
+        respond_to do |format|
+        format.html { redirect_to trips_url, notice: "Trip was successfully destroyed." }
+        format.json { head :no_content }
+        end
+    # else the trip cannot be deleted
+      else
+        redirect_to @trip, alert: "The trip cannot be deleted cause there are some relate orders "
+      end
   end
 
   private

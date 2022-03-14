@@ -5,10 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
   # rolify gem, command rails g rolify Role User, for user roles and authorization
   rolify
+
+  #  then when you delete a user, all cars having that user_id will be deleted also
+
+  # if set nullify, when a user delete the account, relates trips and orders will remain, but the user_id column will be set to null (it is pointless to have any value there because the user with that id was deleted)
   #users and trips table relationships
-  has_many :trips 
+  has_many :trips, dependent: :nullify
   # users and orders table relationships
-  has_many :orders 
+  has_many :orders, dependent: :nullify
 
   def to_s
     email
