@@ -59,6 +59,12 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
   #track activities route:
   get 'track_activities', to: 'static_pages#track_activities', as: 'track_activities'
-  #analytics route:
-  get 'analytics', to: 'static_pages#analytics', as: 'analytics'
+  #analytics routes:
+  get 'analytics', to: 'static_pages#analytics', as: 'analytics' #=> this route is for regular chart data load
+  namespace :charts do  #use namespace gourp the charts routes to make them more clear
+    get 'users_per_day'
+    get 'orders_per_day'
+  end
+  #get 'charts/users_per_day', to: 'charts#users_per_day'  #=> this route is for chart data Eager Loading
+  #get 'charts/orders_per_day', to: 'charts#orders_per_day' #=> this route is for chart data Eager Loading
 end
