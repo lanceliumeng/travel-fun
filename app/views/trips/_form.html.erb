@@ -19,7 +19,8 @@
     <p></p>
     <%#  f.input :description %>
     <%# start: for action text form view %>
-     
+    <p></p>
+    <%= f.label :description %>
     <%= f.rich_text_area :description %>
     <%# description cannot be blank at front end view %>
     <small><%= f.error :description, class: 'text-danger' %></small> 

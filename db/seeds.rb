@@ -6,9 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# create devise user for testing
-# User.create(email:'admin@test.com', password:'coolguy', password_confirmation:'coolguy')
-
+# create devise user for heroku testing
+# for admin: User.create(email:'admin@test.com', password:'coolguy', password_confirmation:'coolguy')
+# for operator: # User.create(email:'operator01@test.com', password:'operator01', password_confirmation:'operator01')
+# for client: # User.create(email:'client01@test.com', password:'client01', password_confirmation:'client01')
 # PublicActivity.enabled = false
 # # random db for first test:
 # 2.times do 
