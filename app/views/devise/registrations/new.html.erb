@@ -15,11 +15,14 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+
+    <%= recaptcha_tags %>
+    <p></p>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, "Sign up" %>
   </div>
 <% end %>
-
+<p></p>
 <%= render "devise/shared/links" %>

@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   #  delete '/orders/:id', to: 'orders#destroy'
     
   #devise gems routes
-  devise_for :users
+  # devise_for :users  
+  # devise + recaptcha routes
+  devise_for :users, :controllers => { registrations: "users/registrations" }
 
   # trips routes
     # get '/trips', to: 'trips#index', as: 'trips'   #=> trips_path

@@ -42,7 +42,7 @@ gem "chartkick" #Create beautiful JavaScript charts with one line of Ruby, for c
 gem "groupdate" #help us to group data, for company management 02
 gem 'aws-sdk-s3', require: false # save images and files in production
 gem 'active_storage_validations' # for simple image validations
-
+gem "recaptcha" #for users loging and signup check
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
