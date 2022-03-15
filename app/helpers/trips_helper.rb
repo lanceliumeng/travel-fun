@@ -4,7 +4,9 @@ module TripsHelper
         #buy logic
         if current_user 
             if trip.user == current_user  #=> if current user who created the trip, then cannot buy and go to check analytics for marketing
-                link_to "You created the trip, please go to check analytics", trip_path(trip)
+                link_to trip_path(trip) do
+                    "You created the trip, price is #{number_to_currency(trip.price)}"
+                end
             elsif trip.orders.where(user: current_user).any?  #=> client user already bought the trip
                 link_to "You have bought the trip, enjoy your trip",trip_path(trip)
             elsif trip.price > 0 #=> if trip price is not 0 then can click price button and make payment

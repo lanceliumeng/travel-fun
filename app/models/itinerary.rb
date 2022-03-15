@@ -5,6 +5,7 @@ class Itinerary < ApplicationRecord
 
 
   validates :title, :content, :trip, presence: true  #these columns cannot blank
+  validates :title, uniqueness: true, length: { maximum: 20 } #itinerary title shold be unique and lenght cannot more than 20 words
   has_rich_text :content  #=> for rails action text, when we create new itinerary, content area has more powful function to edit text 
 
    # for firendly_id gem usage, after use this(another migration), the trip url doesn't show id, good for security

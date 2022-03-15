@@ -1,7 +1,8 @@
 class Trip < ApplicationRecord
     # set validations for trip model, when fufill the trip form, title and description cannot blank, description needs more than 5 chars.
-    validates :title, :brief_info, :language,:price,:duration, presence: true
-    validates :description, presence: true, length: {:minimum => 5 }
+    validates :title, :brief_info, :language, :price, :duration, presence: true
+    validates :description, presence: true, length: { :minimum => 5, :maximum => 2000 } # trip description cannot blank, also length need between 5 to 2000 words
+    validates :brief_info, length: { :maximum => 1000 } #trip brief info words cannot over 1000 words
     #users and trips table relationships
     belongs_to :user, counter_cache: true  #=> The :counter_cache option can be used to make finding the number of belonging objects more efficient.
     #need run the command in rails console to reset counter: User.find_each { |user| User.reset_counters(user.id, :trips) }
@@ -11,7 +12,8 @@ class Trip < ApplicationRecord
     has_many :itineraries, dependent: :destroy # trips and itineraries table relationship, if trip has some itineraries are deleted, the itineraries are also deleted
     has_many :orders, dependent: :restrict_with_error # trips and orders table relations, if any trip be ordered, it cannot be deleted
 
-    validates :title, uniqueness: true 
+    validates :title, uniqueness: true # trip title should unique
+    validates :price, numericality: { greater_than_or_equal_to: 0 } # trip price cannot be negative
 
     # define scopes for trips controller
     scope :published, -> { where(published: true) }
@@ -20,7 +22,7 @@ class Trip < ApplicationRecord
     scope :unapproved, -> { where(approved: false) }
 
     has_one_attached :avatar  #=> for attaching files to Records, it sets up one to one mapping between records and files
-    validates :avatar, content_type: ['image/png', 'image/jpeg', 'image/jpg'], size: { less_than: 500.kilobytes , message: 'image size is too large, it should less than 5 MB' } #attached: true,
+    validates :avatar, content_type: ['image/png', 'image/jpeg', 'image/jpg'], size: { less_than: 700.kilobytes , message: 'image size is too large, it should less than 5 MB' } #attached: true,
     #=> for Active Storage Validations gem setup,only can upload images with 3 types, and cannot oversize
 
     def to_s

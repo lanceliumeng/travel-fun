@@ -79,7 +79,7 @@
             
            <%= link_to unapproved_trips_path, class: "dropdown-item" do %>
               <i class="fa-solid fa-users-gear"></i>
-            <b>Trip unapprove list</b> <span class="badge badge-warning"> <%= Trip.unapproved.count %></span></b>
+            <b>Trip Pending List</b> <span class="badge badge-warning"> <%= Trip.unapproved.count %></span></b>
             <% end %>
 
             <%= link_to orders_path, class: "dropdown-item" do %>
