@@ -1,5 +1,5 @@
 <%# this is partial _trips veiw + bootstrap card format %>
-<div class="card-group">
+
 
   <div class="card shadow">
   <%# each img for travel trip %>
@@ -12,7 +12,7 @@
 
        <%# for image avatar front end show %>
       <% if trip.avatar.attached? %>
-        <div class="card-img-top mt-1">
+        <div class="card-img-top p-1">
         <div>
           <%=image_tag trip.avatar, width:"100%", height:"200px"%>
         </div>
@@ -127,4 +127,3 @@
     
       <% end %>
   </div>
-</div>
