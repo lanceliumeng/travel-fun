@@ -1,0 +1,37 @@
+<%# similar front end template with trip show html erb file %>
+<div class="mt-3">
+<% content_for :title do %>
+  Travel Fun/<%= @trip.title %>
+<% end %>
+
+<%= link_to 'Travel Plans', trips_path %>
+\
+<i class="fa-solid fa-map-location-dot text-info"></i>
+<%= link_to @trip.title, trip_path(@trip) %> 
+\
+<i class="fa-solid fa-chart-bar text-warning"></i>
+<%= link_to analytics_trip_path(@trip) do %> 
+    Analytic
+<% end %>
+
+<p></p>
+
+<h4 class="text-center">
+   How many people choose the trip (per day) 
+</h4>
+<div class="card">
+  <div class="card-body">
+    <%= column_chart @trip.orders.group_by_day_of_week(:created_at, format: "%a").count %>
+  </div>
+</div>
+<p></p>
+<h4 class="text-center">
+  How much revenue from this trip (per day) 
+</h4>
+<div class="card">
+  <div class="card-body">
+    <%= line_chart @trip.orders.group_by_day(:created_at).sum(:price) %>
+  </div>
+</div>
+
+</div>

@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show  #even user don't log in, the user still can check trip show page
-  before_action :set_trip, only: [:show, :edit, :update, :destroy, :approve, :unapprove]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy, :approve, :unapprove, :analytics]
 
   # index action, trips_path will show all trips to browser.
   def index
@@ -76,6 +76,11 @@ class TripsController < ApplicationController
     redirect_to @trip, notice: "Trip is unapproved and the creator needs to double check details."
   end
   #end
+
+  def analytics
+    authorize @trip, :analytics? #for analytics policy
+  end
+
 
   # set variable to collect itineraries,display it in trips show page
   def show

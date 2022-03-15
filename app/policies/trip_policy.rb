@@ -14,15 +14,15 @@ class TripPolicy < ApplicationPolicy
       (@user.present? && @record.purchased(@user)) #the user purchased the trip (client)
     end 
 
-    def edit?  #Ruby Safe navigation operator & can solve log out error bug =>  @user&.has_role?(:admin) = @user.present? && @user.has_role?:admin
-      @user&.has_role?(:admin) || @record.user == @user  # only admin or when users object who match the trips creator object
+    def edit?  
+       @record.user == @user  # only when users object who match the trips creator object
     end
 
     def update?
       @record.user == @user  # when users object who match the trips creator object
     end
 
-    def new?
+    def new?  #Ruby Safe navigation operator & can solve log out error bug =>  @user&.has_role?(:admin) = @user.present? && @user.has_role?:admin
       @user&.has_role?(:operator)  #only operator role can create trips
     end
 
@@ -31,14 +31,20 @@ class TripPolicy < ApplicationPolicy
     end
 
     def destory?
-      @user&.has_role?(:admin) || @record.user == @user  #only admin role can delete trips or when users id who match the trips creator id
+      @user&.has_role?(:admin) || @record.user == @user 
+      #only admin role can delete trips or when users id who match the trips creator id
     end
 
     def owner?
-      @record.user == @user
+      @record.user == @user && @record.orders.none?
+      # if the trip releated any order, cannot be destory  
     end
 
     def approve? 
       @user&.has_role?(:admin)  #only admin role can approve the trips
+    end
+
+    def analytics?
+      @user.has_role?(:admin) || @record.user == @user  # admin and operator role can check the trips analytics
     end
 end

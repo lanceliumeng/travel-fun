@@ -55,7 +55,7 @@
     <%# users authorization check %>
     <%# if current user is client, then they do need have the below views %>
     <% if current_user %>
-      <% if policy(trip).edit? %> 
+      <% if policy(trip).destory? %> 
 
       <%# each trip created time and user is card footer  %>
       <%# card footer 01 for trips created time and creater username %>
@@ -78,7 +78,15 @@
       </div>
       <% end %>
 
-    <% if policy(trip).edit? %> 
+      <% if policy(trip).analytics? %> 
+      <div class="card-footer">
+        <%= link_to analytics_trip_path(trip), class: 'btn btn-primary' do%>
+        <i class="fa-solid fa-chart-bar"></i>  Analytics
+        <% end %>
+      </div>
+      <% end %>
+
+    <% if policy(trip).destory? %> 
       <%# card footer 03 for badges %>
       <div class="card-footer">
         <span class="font-weight-bold">Status:</span>
