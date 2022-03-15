@@ -5,9 +5,18 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
+
+    <%= f.label :avatar %>
+    <p></p>
+    <% if @trip.avatar.attached? %>
+      <%=image_tag @trip.avatar, width:"200px"%>
+    <% end %>
+    <p></p>
+    <%= f.file_field :avatar%>
+    <p></p>
     <%#  f.input :description %>
     <%# start: for action text form view %>
-    <%= f.label :description %>  
+     
     <%= f.rich_text_area :description %>
     <%# description cannot be blank at front end view %>
     <small><%= f.error :description, class: 'text-danger' %></small> 

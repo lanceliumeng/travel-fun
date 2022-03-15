@@ -40,6 +40,7 @@ gem "pundit" #users roles and authorization helper 02, it can give user roles ba
 gem 'pagy' #A classic pagination gem, how me to pagination content pages, https://ddnexus.github.io/pagy/how-to#gsc.tab=0
 gem "chartkick" #Create beautiful JavaScript charts with one line of Ruby, for company management 01
 gem "groupdate" #help us to group data, for company management 02
+gem 'aws-sdk-s3', require: false # save images and files in production
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

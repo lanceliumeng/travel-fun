@@ -19,6 +19,9 @@ class Trip < ApplicationRecord
     scope :approved, -> { where(approved: true) }
     scope :unapproved, -> { where(approved: false) }
 
+    has_one_attached :avatar  #=> for attaching files to Records, it sets up one to one mapping between records and files
+
+
     def to_s
         title
     end

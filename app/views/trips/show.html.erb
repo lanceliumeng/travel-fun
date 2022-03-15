@@ -23,6 +23,13 @@
                     <%= @trip.title %>
                 </h3>
                 <p></p>
+
+                <% if @trip.avatar.attached? %>
+                <div>
+                    <%=image_tag @trip.avatar, width:"400px"%>
+                </div>
+                <% end %>
+
                 <div> 
                     <i class="fa-solid fa-circle-info text-primary"> </i>
                     <span class="font-weight-bold"> Brief Information: </span>
