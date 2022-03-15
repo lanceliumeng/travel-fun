@@ -10,9 +10,12 @@
     <p></p>
     <% if @trip.avatar.attached? %>
       <%=image_tag @trip.avatar, width:"200px"%>
+      <p></p>
+      <%= @trip.avatar.filename%>
     <% end %>
     <p></p>
     <%= f.file_field :avatar%>
+    <small><%= f.error :avatar, class: 'text-danger' %></small> 
     <p></p>
     <%#  f.input :description %>
     <%# start: for action text form view %>

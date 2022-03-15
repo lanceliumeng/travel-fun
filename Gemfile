@@ -41,6 +41,8 @@ gem 'pagy' #A classic pagination gem, how me to pagination content pages, https:
 gem "chartkick" #Create beautiful JavaScript charts with one line of Ruby, for company management 01
 gem "groupdate" #help us to group data, for company management 02
 gem 'aws-sdk-s3', require: false # save images and files in production
+gem 'active_storage_validations' # for simple image validations
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
