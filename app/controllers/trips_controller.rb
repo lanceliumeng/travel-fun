@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show  #even user don't log in, the user still can check trip show page
   before_action :set_trip, only: [:show, :edit, :update, :destroy, :approve, :unapprove]
 
   # index action, trips_path will show all trips to browser.

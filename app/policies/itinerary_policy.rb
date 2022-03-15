@@ -11,7 +11,7 @@ class ItineraryPolicy < ApplicationPolicy
     # end
   
       def edit?  #gem pundit, similar setup as trip policy
-         @record.trip.user == @user  # when users id who match the trips creator id can edit, which means only the trip creator can do this action
+        @user.present? && (@record.trip.user == @user)  # when users id who match the trips creator id can edit, which means only the trip creator can do this action
       end
   
       def update?

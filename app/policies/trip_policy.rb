@@ -11,7 +11,7 @@ class TripPolicy < ApplicationPolicy
       (@record.published && @record.approved) ||  # it is published or approved OR
       (@user.present? && @user&.has_role?(:admin)) ||  # user is admin OR
       (@user.present? && @record.user == @user) ||  # user is the creator of the trip OR
-      (@record.purchased(@user)) #the user purchased the trip (client)
+      (@user.present? && @record.purchased(@user)) #the user purchased the trip (client)
     end 
 
     def edit?  #Ruby Safe navigation operator & can solve log out error bug =>  @user&.has_role?(:admin) = @user.present? && @user.has_role?:admin

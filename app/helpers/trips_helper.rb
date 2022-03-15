@@ -13,8 +13,8 @@ module TripsHelper
                 link_to "Free", new_trip_order_path(trip), class: 'btn btn-primary'
             end
             #buy logic
-        else
-            link_to "Check Price", trip_path(trip), class: 'btn btn-md btn-success'
+        else # => when user don't login, the use can check the price but they need to log in for placing order
+            link_to number_to_currency(trip.price), new_trip_order_path(trip), class: 'btn btn-md btn-success'
         end
     end
 

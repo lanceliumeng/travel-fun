@@ -11,7 +11,7 @@
 
 PublicActivity.enabled = false
 # random db for first test:
-5.times do 
+2.times do 
     Trip.create([{
         title: Faker::FunnyName.three_word_name,
         description: Faker::TvShows::AquaTeenHungerForce.quote,

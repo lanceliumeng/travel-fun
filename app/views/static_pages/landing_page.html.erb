@@ -96,6 +96,7 @@
 <%# end %>
 
 <%# for 4 trips sections %>
+<% if current_user %>
 <hr class="my-4">
 <h2> <i class="fa-brands fa-telegram text-success"></i> Your Travel Plan  </h2>
 <div class="card-columns">
@@ -104,6 +105,10 @@
     <%= render 'trips/trip', trip: trip %>
   <% end %>
 </div>
+<div class="text-right">
+  <%= link_to 'All My Travel Plans', brought_trips_path %>
+</div>
+<% end %>
 
 <hr class="my-4">
 <h2> <i class="fa-solid fa-fire-flame-curved text-warning"></i>  Popular Trips </h2>
@@ -112,6 +117,9 @@
   <% @popluar_trips.each do |trip| %>
     <%= render 'trips/trip', trip: trip %>
   <% end %>
+</div>
+<div class="text-right">
+  <%= link_to 'Explore More Popular Trips...', trips_path(trips_search: {s: 'orders_count desc'}) %>
 </div>
 
 <hr class="my-4">
@@ -122,6 +130,10 @@
     <%= render 'trips/trip', trip: trip %>
   <% end %>
 </div>
+<div class="text-right">
+  <%= link_to 'Explore More Top Rated Trips...', trips_path(trips_search: {s: 'rating desc'}) %>
+</div>
+
 
 <hr class="my-4">
 <h2> <i class="fa-solid fa-clock text-info"></i> New Trips  </h2>
@@ -130,4 +142,7 @@
   <% @new_trips.each do |new_trip| %>
     <%= render 'trips/trip', trip: new_trip %>
   <% end %>
+</div>
+<div class="text-right">
+  <%= link_to 'Explore More New Trips...', trips_path(trips_search: {s: 'created_at desc'}) %>
 </div>
