@@ -69,7 +69,7 @@
       </div>
        <% end %>
       <%# card footer 02 for buttons %>
-      <%# only trip owner creator can see this buttons %>
+      <%# only trip owner creator can see this buttons and if the trip has related any order, can see the below buttons %>
       <% if policy(trip).owner? %> 
       <div class="card-footer">
         <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-sm btn-info' %>
