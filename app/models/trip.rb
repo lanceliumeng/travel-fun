@@ -20,7 +20,7 @@ class Trip < ApplicationRecord
     scope :unapproved, -> { where(approved: false) }
 
     has_one_attached :avatar  #=> for attaching files to Records, it sets up one to one mapping between records and files
-    validates :avatar, attached: true, content_type: ['image/png', 'image/jpeg', 'image/jpg'], size: { less_than: 500.kilobytes , message: 'image size is too large, it should less than 5 MB' } 
+    validates :avatar, content_type: ['image/png', 'image/jpeg', 'image/jpg'], size: { less_than: 500.kilobytes , message: 'image size is too large, it should less than 5 MB' } #attached: true,
     #=> for Active Storage Validations gem setup,only can upload images with 3 types, and cannot oversize
 
     def to_s

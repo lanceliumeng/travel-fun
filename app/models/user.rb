@@ -28,6 +28,11 @@ class User < ApplicationRecord
     self.email.split(/@/).first  
   end
 
+  # public_activity gem setup in trip model
+  include PublicActivity::Model
+  tracked only: [:create, :destory], owner: :itself
+  # tracked owner: Proc.new{ |controller, model| controller.current_user }
+
   # rolify gem assign default role
   after_create :assign_default_role
 
@@ -39,7 +44,7 @@ class User < ApplicationRecord
       self.add_role(:client)
     else   #=> the other users role will be client and operator by default, waiting for update
       self.add_role(:client) if self.roles.blank? 
-      self.add_role(:operator)
+      # self.add_role(:operator) #=> after first account, all sign up account is client and operator role
     end
   end
 
