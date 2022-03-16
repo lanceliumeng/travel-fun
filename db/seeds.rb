@@ -33,14 +33,14 @@
 #     # admin.skip_confirmation!
 #     admin.add_role(:admin) unless admin.has_role?(:admin)
 #     admin.add_role(:operator) unless admin.has_role?(:operator)
-#   end
-  
-# if User.find_by_email("operator01@test.com").nil?
-#     operator01 = User.create!(email: "operator01@test.com", password: "operator01", password_confirmation: "operator01")
-#     # studentteacher.skip_confirmation!
-#     operator01.add_role(:operator) unless operator01.has_role?(:operator)
-#     operator01.add_role(:client) unless operator01.has_role?(:client)
 # end
+  
+if User.find_by_email("operator01@test.com").nil?
+    operator01 = User.create!(email: "operator01@test.com", password: "operator01", password_confirmation: "operator01")
+    # studentteacher.skip_confirmation!
+    operator01.add_role(:operator) unless operator01.has_role?(:operator)
+    operator01.add_role(:client) unless operator01.has_role?(:client)
+end
   
 # if User.find_by_email("client01@test.com").nil?
 #     client01 = User.create!(email: "client01@test.com", password: "client01", password_confirmation: "client01")
