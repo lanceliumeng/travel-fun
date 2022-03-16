@@ -4,33 +4,14 @@
 <% end %>
 
 <%# bootstrap jumbotron format %>
-<div class="jumbotron mt-3">
-  <h1 class="display-4 text-success"> Welcome Traveller </h1>
+<div class="jumbotron mt-3 shadow" id= "background">
+  <h1 class="text-shadow"> Welcome Traveller </h1>
   <%# spay tag for typed.js %>
-  <p class="lead font-weight-bold font-italic text-primary">Do you prepare to <span class="mov"> </span> </p>
+  <p class="lead font-weight-bold font-italic text-shadow">Do you prepare to <span class="mov"> </span> </p>
+  <hr class="my-5">
+      <p>Tasmania's environment consistes of many different biomes or communities across its different regions. It is the most forested state in Australia, and preserves the country's largest areas of temperate rainforest.</p>
+  <p></p>
   <hr class="my-4">
-      <%# Search Bar Start %>
-      <%# after use ransack gem, I set a method on application controller, we can use that globel vaeiable to set nav bar search %>
-      <%# in home page, need to add if current_user statment, otherwise logout will rise an error %>
-      <% if current_user %>
-      <div class="form-inline my-2 my-lg-0">
-          <%= search_form_for @ransack_trips, as: :trips_search, url: trips_path do |f| %>
-           <div class="input-group">
-           <%# :title_or_brief_info_cont which means when client use search bar  %>
-           <%# The db will check trips table for "title"  OR "brief_info" to find if there are anything to match %>
-           <%# kind of like nav bar search includes the side bar search: title and brief info seach %>
-           <%# finally I changed it back to only for title search, I found this is more accurate for users searching %>
-           <%= f.search_field :title_cont, class: 'form-control-sm',  placeholder: 'Find Your Trip', autocomplete: 'off' %>
-            <span class="input-group-append">
-                <button class="btn btn-primary btn-sm" type="submit">
-                <span aria-hidden="true" class="fa fa-search"></span>
-                </button>
-              </span>
-            </div>
-          <% end %>
-        </div>
-        <% end %>
-      <%# Search Bar End %>
 </div>
 
 <%# for bootstrap card group format I%>

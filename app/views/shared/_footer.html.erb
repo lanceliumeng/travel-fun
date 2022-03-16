@@ -1,7 +1,7 @@
 <!-- Bootstrap Footer format start -->
 <footer class="page-footer font-small blue-grey lighten-5 mt-5">
 
-  <div style="background-color: #019267;">
+  <div style="background-color:#019267;">
     <div class="container">
 
       <!-- Grid row-->
@@ -66,16 +66,16 @@
         <h6 class="text-uppercase font-weight-bold">Our Trips</h6>
         <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p>
-          <a class="dark-grey-text" href="#!">Trip 01</a>
+          <a class="dark-grey-text" href="#!">Great Trip</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="#!">Trip 02</a>
+          <a class="dark-grey-text" href="#!">Nice Trip</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="#!">Trip 03</a>
+          <a class="dark-grey-text" href="#!">Cool Trip</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="#!">Bootstrap Angular</a>
+          <a class="dark-grey-text" href="#!">Bootstrap Cool</a>
         </p>
       </div>
       <!-- Grid column -->
@@ -87,16 +87,14 @@
         <h6 class="text-uppercase font-weight-bold">Useful links</h6>
         <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p>
-          <a class="dark-grey-text" href="#!">Your Account</a>
+          <%= link_to edit_user_registration_path, class: "dark-grey-text" do %>
+              Your Account
+          <% end %>
         </p>
         <p>
-          <a class="dark-grey-text" href="#!">Community</a>
-        </p>
-        <p>
-          <a class="dark-grey-text" href="#!">Privacy Policy</a>
-        </p>
-        <p>
-          <a class="dark-grey-text" href="#!">Help</a>
+          <%= link_to privacy_policy_path, class: "dark-grey-text" do %>
+              Privacy Policy
+          <% end %>
         </p>
 
       </div>
