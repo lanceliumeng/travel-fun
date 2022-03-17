@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# original seeds data:
 # create devise user for heroku testing
 # for admin: User.create(email:'admin@test.com', password:'coolguy', password_confirmation:'coolguy')
 # for operator: # User.create(email:'operator01@test.com', password:'operator01', password_confirmation:'operator01')
@@ -26,21 +27,22 @@
 # end
 # PublicActivity.enabled = true
 
-#update seeds file for newest app db version:
 
-# if User.find_by_email("admin01@test.com").nil?
-#     admin = User.create!(email: "admin01@test.com", password: "coolguy", password_confirmation: "coolguy")
+
+#update seeds file for newest app db version:
+# if User.find_by_email("admin@test.com").nil?
+#     admin = User.create!(email: "aadmin@test.com", password: "coolguy", password_confirmation: "coolguy")
 #     # admin.skip_confirmation!
 #     admin.add_role(:admin) unless admin.has_role?(:admin)
 #     admin.add_role(:operator) unless admin.has_role?(:operator)
 # end
   
-if User.find_by_email("operator01@test.com").nil?
-    operator01 = User.create!(email: "operator01@test.com", password: "operator01", password_confirmation: "operator01")
-    # studentteacher.skip_confirmation!
-    operator01.add_role(:operator) unless operator01.has_role?(:operator)
-    operator01.add_role(:client) unless operator01.has_role?(:client)
-end
+# if User.find_by_email("operator01@test.com").nil?
+#     operator01 = User.create!(email: "operator01@test.com", password: "operator01", password_confirmation: "operator01")
+#     # studentteacher.skip_confirmation!
+#     operator01.add_role(:operator) unless operator01.has_role?(:operator)
+#     operator01.add_role(:client) unless operator01.has_role?(:client)
+# end
   
 # if User.find_by_email("client01@test.com").nil?
 #     client01 = User.create!(email: "client01@test.com", password: "client01", password_confirmation: "client01")
