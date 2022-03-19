@@ -101,6 +101,8 @@ class TripsController < ApplicationController
   end
 
   # POST /trips or /trips.json
+  # New will  pass a hash with key names matching the associated table column names,
+  # Save returns either true or false depending on whether the object was saved successfully to the database or not. 
   def create
     @trip = Trip.new(trip_params)
     authorize @trip #for only specific role(trip_policy.rb) can do this action
