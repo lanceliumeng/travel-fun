@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: :landing_page 
-  #=> only for static page controller, cause I want users don't need sign in or sign up but still can check home page only(aka landing_page ).
+  skip_before_action :authenticate_user!, only: :landing_page, :privacy_policy 
+  #=> skip authenticate only for landing page and privacy policy, cause I want users don't need sign in or sign up but still can check home page only(aka landing_page ) plus privacy policy page
   
   def landing_page
     # for landing_page (home page) propular and top rate trips

@@ -1,7 +1,9 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :set_trip, only: [:new, :create]
-  # GET /orders or /orders.json
+  # GET /orders
+  # GET all orders view page
+  # Renders orders list view page. 
   def index
     # @orders = Order.all
     # Ransack gem for for searching/filtering orders
@@ -21,6 +23,7 @@ class OrdersController < ApplicationController
 
 
   # GET /orders/1 or /orders/1.json
+  #When the user selects this action, the controller will execute any code in the appropriate section - "def show" - and then by default will render a template of the same name - "show.html.erb".
   def show
   end
 
@@ -34,7 +37,7 @@ class OrdersController < ApplicationController
     authorize @order #for only specific role(order_policy.rb) can do this action
   end
 
-  #create action for place new order 
+  #create action for place new order
   def create
     # @order = Order.new(order_params)
     # @order.price = @order.trip.price  #when place order, order doesn't need to create its own price, it price needs to equal the trip's price
