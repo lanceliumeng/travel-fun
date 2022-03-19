@@ -57,12 +57,15 @@ include PublicActivity::Model in itinerary , trip and user model, to allow admin
 ![sitemap](docs/sitemap/Travel_Fun_Sitemap.png)
 
 ### Screenshots :smiley_cat:
+
 <details>
   <summary>Click Me to expand!</summary>
+
   - #### landing page no log in
   ![landing page](docs/Screenshots/landing_page_no_log_in/0_landing_page_no_log_in.jpeg)
   - #### signup page
   ![signup page](docs/Screenshots/landing_page_no_log_in/1_signup_page.png)
   - #### login page
   ![login page](docs/Screenshots/landing_page_no_log_in/2_login_page.png)
+  
 </details>
