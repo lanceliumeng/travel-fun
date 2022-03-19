@@ -38,10 +38,10 @@ Travel Fun website allows users to create an account by email and password, they
   - For Admin:
 Admin has all the permissions of the website, including changing user roles, viewing all order statuses, viewing all user login statuses, all travel product operation statuses, and sales analysis. At the same time, he also has the operation authority of the operator role. The admin can approve the travel product, and only the approved product can be displayed on the client's page. If a travel product needs to be deleted, the admin needs to notify the creator（operator） to delete it, and the admin has no right to do so. This can prevent confusion in the company's operations at some extent.
 
-  - For Operating users
+  - For Operating users:
 They can create travel products, upload pictures on the creation page, format the itinerary description through the rich text area to make it easier to read, and can choose travel plan language for different clients who have different cultural backgrounds, also operator can decide the duration and price for the travel product. After creating a new travel product, it needs to wait for the approval of the admin user. And operators can also see which user has purchased their own travel products, which is convenient to communicate with their clients at any time.
 
-  - For client users
+  - For client users:
 After logging in to the website, they can not only see more details of travel products but also search for travel products according to their own needs. The search function includes allowing search by travel product title, introduction, language and price. And they also can sort based on the price and popularity of travel products from high to low. After purchases, clients can find the purchased products in the travel plan, and they can write reviews and tell us how they feel. The pending review area will notify clients if there is any travel product they forget to leave comments. 
 
 - Since users with different permissions can see different interfaces, this can prevent users from performing unauthorized operations. If the user wants to perform an unauthorized operation by entering the url, he will receive a prompt from the website that the operation is invalid.
@@ -55,3 +55,14 @@ include PublicActivity::Model in itinerary , trip and user model, to allow admin
 
 ### Sitemap :scroll:
 ![sitemap](docs/sitemap/Travel_Fun_Sitemap.png)
+
+### Screenshots :smiley_cat:
+<details>
+  <summary>Click Me to expand!</summary>
+  - #### landing page no log in
+  ![landing page](docs/Screenshots/landing_page_no_log_in/0_landing_page_no_log_in.jpeg)
+  - #### signup page
+  ![signup page](docs/Screenshots/landing_page_no_log_in/1_signup_page.png)
+  - #### login page
+  ![login page](docs/Screenshots/landing_page_no_log_in/2_login_page.png)
+</details>
