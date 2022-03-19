@@ -1,0 +1,5 @@
+<%# dynamic title for user show page => user show page title should like Travel-Fun/username-Profile%> 
+<% content_for :title do %>
+  Travel Fun/<%= @user.username %>-Profolie
+<% end %>
+<%= render 'users/user', user: @user %>

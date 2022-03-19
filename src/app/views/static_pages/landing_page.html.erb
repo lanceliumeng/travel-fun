@@ -1,0 +1,129 @@
+<%# dynamic title for home page => home page title should like Travel-Fun/username-Profile%> 
+<% content_for :title do %>
+  Travel Fun|Adventure Explore
+<% end %>
+
+<%# bootstrap jumbotron format %>
+<div class="jumbotron mt-3 shadow" id= "background">
+  <h1 class="text-shadow"> Welcome Traveller </h1>
+  <%# spay tag for typed.js %>
+  <p class="lead font-weight-bold font-italic text-shadow">Do you prepare to <span class="mov"> </span> </p>
+  <hr class="my-5">
+      <p>Tasmania's environment consistes of many different biomes or communities across its different regions. It is the most forested state in Australia, and preserves the country's largest areas of temperate rainforest.</p>
+  <p></p>
+  <hr class="my-4">
+</div>
+
+<%# for bootstrap card group format I%>
+<div class="card-group">
+
+  <%# card body 01 - Porpular Trips %>
+  <div class="card card-body">
+        <h1 class="text-warning">
+            <i class="fa-solid fa-compass"></i>
+        </h1>
+        <div class="card-text">
+            <b><%= Trip.count %> Porpular Trips </b>
+        </div>
+        <div class="card-text">
+            Let's explore a variety of trips
+        </div>
+  </div>
+
+  <%# card body 02 - Professional Trip Designer %>
+  <div class="card card-body">
+        <h1 class="text-info">
+           <i class="fa-solid fa-user-tie"></i>
+        </h1>
+        <div class="card-text">
+            <b><%= Trip.distinct.count(:user_id) %> Professional Trip Designer </b>
+        </div>
+        <div class="card-text">
+            Find the right trip only for you
+        </div>
+  </div>
+
+  <%# card body 03 - Active Users %>
+   <div class="card card-body">
+        <h1 class="text-success">
+           <i class="fa-solid fa-users"></i>
+        </h1>
+        <div class="card-text">
+            <b><%= User.count %> Active Users</b>
+        </div>
+        <div class="card-text">
+            Welcome to join our traveller and designer community
+        </div>
+  </div>
+
+  <%# card body 04 - Adventure Explore Tasmania %>
+   <div class="card card-body">
+        <h1 class="text-primary">
+            <i class="fa-solid fa-earth-oceania"></i>
+        </h1>
+        <div class="card-text">
+            <b>Adventure Explore Tasmania</b>
+        </div>
+        <div class="card-text">
+            by your professional trip designer
+        </div>
+  </div>
+  
+</div>
+
+<hr class="my-4">
+<%# start: partial page for carousel images %>
+<%=render 'carousel'%>
+<%# end %>
+
+<%# for 4 trips sections %>
+<% if current_user %>
+<hr class="my-4">
+<h2> <i class="fa-brands fa-telegram text-success"></i> Your Travel Plan  </h2>
+<div class="card-columns">
+   <%# use ruby each method to list each trip in card format %>
+  <% @purchased_trips.each do |trip| %>
+    <%= render 'trips/trip', trip: trip %>
+  <% end %>
+</div>
+<div class="text-right">
+  <%= link_to 'All My Travel Plans', brought_trips_path %>
+</div>
+<% end %>
+
+<hr class="my-4">
+<h2> <i class="fa-solid fa-fire-flame-curved text-warning"></i>  Popular Trips </h2>
+<div class="card-columns">
+   <%# use ruby each method to list each trip in card format %>
+  <% @popluar_trips.each do |trip| %>
+    <%= render 'trips/trip', trip: trip %>
+  <% end %>
+</div>
+<div class="text-right">
+  <%= link_to 'Explore More Popular Trips...', trips_path(trips_search: {s: 'orders_count desc'}) %>
+</div>
+
+<hr class="my-4">
+<h2> <i class="fa-solid fa-star text-warning"></i> Top Rated Trips  </h2>
+<div class="card-columns">
+   <%# use ruby each method to list each trip in card format %>
+  <%  @top_rated_trips.each do |trip| %>
+    <%= render 'trips/trip', trip: trip %>
+  <% end %>
+</div>
+<div class="text-right">
+  <%= link_to 'Explore More Top Rated Trips...', trips_path(trips_search: {s: 'rating desc'}) %>
+</div>
+
+
+<hr class="my-4">
+<h2> <i class="fa-solid fa-clock text-info"></i> New Trips  </h2>
+<div class="card-columns">
+   <%# use ruby each method to list each trip in card format %>
+  <% @new_trips.each do |new_trip| %>
+    <%= render 'trips/trip', trip: new_trip %>
+  <% end %>
+</div>
+<div class="text-right">
+  <%= link_to 'Explore More New Trips...', trips_path(trips_search: {s: 'created_at desc'}) %>
+</div>

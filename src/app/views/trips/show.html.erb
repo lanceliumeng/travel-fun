@@ -1,0 +1,70 @@
+<%# dynamic title for trip show page => trips show page title should like Travel-Fun/trip title%> 
+<% content_for :title do %>
+  Travel Fun/<%= @trip.title %>
+<% end %>
+
+<%# show page will display each trip details %>
+<div class="container mt-3">
+    <%= link_to 'Travel Plans', trips_path %>
+\
+    <%# icon + boostrap color %>
+    <i class="fa-solid fa-map-location-dot text-info"></i>
+    <%= link_to @trip.title, trip_path(@trip) %> 
+    <p></p>
+
+    <%# devide each trip view table to 2 parts, good for front end %>
+    <div class="row">
+        <%# left part start: %>
+        <div class="col-lg-7 order-1 order-lg-1">
+          <%# start new jumbotron field for each trips page %>
+            <div class="jumbotron">
+                <h3 >
+                    <i class="fa-solid fa-cart-flatbed-suitcase text-primary"></i>
+                    <%= @trip.title %>
+                </h3>
+                <p></p>
+                
+                <div> 
+                    <i class="fa-solid fa-circle-info text-primary"> </i>
+                    <span class="font-weight-bold"> Brief Information: </span>
+                    <p></p>
+                    <%= @trip.brief_info %>
+                </div> 
+            </div>
+          <%# end jumbotron %>
+
+        <%# the below front end view is add itinerary can click, after click, the url link nested route  %>
+        <%# trip_itinerary_path @trip,@itinerary => localhost:3000/trips/trip.id/itinerary/itinerary.id %>
+        <%# render partial page itinerary for exactly trip %>
+            <h4 class="pl-2">
+            <i class="fa-solid fa-list"></i> <%= pluralize(@trip.itineraries_count,"Day")%> Tour
+            </h4>
+            <p></p>
+            
+            <div>
+            <% @itineraries.each do |itinerary|%>
+            <%= render 'itineraries/itinerary', itinerary: itinerary %>
+            <% end %>
+            </div>
+
+            <h4 class="pl-2">
+            <i class="fa-solid fa-list"></i> <%= pluralize(@orders_with_reviews.count,"Review") %> 
+            </h4>
+             <% @orders_with_reviews.each do |order|%>
+                <%= render 'orders/order', order: order%>
+            <% end %>
+            <p></p>
+        </div>
+        <%# left part end %>
+
+        <%# right part start: %>
+        <div class="col-lg-5 order-0 order-lg-1">
+        <%# render partial page trip for exactly trip %>
+            <div>
+            <%= render 'trips/trip', trip: @trip%>
+            </div>
+        </div>
+        <%# right part end %>
+        
+    </div>
+</div>
