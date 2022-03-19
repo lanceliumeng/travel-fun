@@ -196,3 +196,225 @@ include PublicActivity::Model in itinerary , trip and user model, to allow admin
 
 ## Entity Relationship Diagram (ERD) :pushpin:
 ![erd](docs/ERD/Travel%20Fun%20ERD.png)
+
+## Explain the different high-level components (abstractions) :pencil2:
+
+#### Static_pages  MVC:
+For Travel Fun home page, when user go to root route, StaticPagesController will run action landing_page,then the instance variables under the action will loading new_trips, purchased_trips, popluar_trips and top_rated_trips data to view page by layout. Landing_page and privacy_policy skip authentication, which means any user can check these pages. For static_pages controller, it also includes track activities and analytics actions, but these actions and views only for the current user have specific roles authorise. 
+#### Trip, itinerary and order  MVC:
+First of all, I have set before_action in above three controllers, generally, the private specific method will be called just before some actions. These specific methods are about find method, for exemple, for trip controller, set_trip 
+```ruby
+(@trip = Trip.friendly.find(params[:trip_id])) 
+``` 
+will be called before some actions, for the find method, Behind the scenes, it is automaticlly executing SQL:   
+```sql
+SELECT * FROM trips WHERE id = params id query.  
+```
+Application users even don’t have to concern themself with how they will interact with data but still can take specific data from database.. Ruby on Rails implements the Active Record pattern through ActiveRecord, included in every Rails application by default.
+If user log in and try to create new trip , new itineraries or new order, the corresponding controllesrs will run create action, call params to access form & URL query data. Please note, in my routes file, you can find itineraries and orders routes are nested in trips route, That’s because each itinerary and order need to mapping specify trip. For trip controller, create action, only has one  POST request, new method will  pass a hash with key names matching the associated table column names, in this case, the pramas is trip_params private method, which includes title, description, beird info etc,  then use save method returns either true or false depending on whether the new  trip object was saved successfully to the database or not. At trip model file, I have set some validations, each data insert database before needs to achieve validation rules.  For new page will render form partial erb file which allows user complete new trip details.  For trips view, there are two partial files one is for trip form and another one is for each trip card details, The most important where partial comes into picture is when I want to reuse these component amongst different views, I just need to render these partial files. 
+
+## Third Party Services :telescope:
+
+#### Heroku 
+Heroku is a container-based cloud Platform as a Service (PaaS), for my travel fun application, I set Heroku connect with my git repo, when I git push to update travel fun application, Heroku will automatically build up and deploy the application latest version base on my git repo codes.  
+#### AWS S3
+Amazon S3 (Amazon Simple Storage Service) is a service offered by Amazon Web Services that provides object storage through a web service interface. For travel fun application, every upload image will store in Amazon S3.
+#### Google reCAPTCHA
+reCAPTCHA is a free service from Google that helps protect websites from spam and abuse. A “CAPTCHA” is a turing test to tell human and bots apart. When users sign up, they need to pass reCAPTCHA check. 
+
+## Models in terms of the relationships :door:
+
+- Model Itinerary belongs to Model Trip, eg: a itinerary belongs to a trip. 
+- Model Trip belongs to Model user, eg: a trip belongs to a user. 
+- Model Trip has many Model itinerary and Model Order, eg: a trip has many itineraries and many orders. 
+- Model Trip has one attached image,eg: a trip can include one image. 
+- Model Order belongs to Model trip and Model user, eg: one order belongs to a trip and a user. 
+- Model Role has and belongs to Model users, via an intermediate join table: users_roles, eg: a role has many users and a role can belong to a user. 
+- Model User has many Model trip and Model order., eg: a user can have many trips and orders. 
+
+## Database Relations :book:
+
+- In trips table, it has a column which is user_id, it is foreign key in trips table. In users table, user_id is primary key. 
+- In active_storage_attachments and active_storage_variant_records table, they have column blob_id, and it is foreign key, but in active_storage_blobs table, it is primary key. 
+- In users_roles table, it includes two columns, user_id and role_id, they are foreign keys in here. But user_id is primary key in users table, role_id is primary key in roles table. 
+- In Itineraries table, it has foreign key column: trip id, and trip id is primary key in trips table. 
+- In orders table, it includes two columns: trip id and user id, they are foreign keys in here. But in trips table, trip id is primary key. In users table, user id is primary key. 
+
+## Database Schema Design :memo:
+
+```ruby
+create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.string "trackable_type"
+    t.bigint "trackable_id"
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.string "key"
+    t.text "parameters"
+    t.string "recipient_type"
+    t.bigint "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
+    t.index ["owner_type", "owner_id"], name: "index_activities_on_owner"
+    t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
+    t.index ["recipient_type", "recipient_id"], name: "index_activities_on_recipient"
+    t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
+    t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "itineraries", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "trip_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_itineraries_on_slug", unique: true
+    t.index ["trip_id"], name: "index_itineraries_on_trip_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "rating"
+    t.text "review"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_orders_on_slug", unique: true
+    t.index ["trip_id"], name: "index_orders_on_trip_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.string "slug"
+    t.text "brief_info"
+    t.string "language", default: "English", null: false
+    t.string "duration", default: "5-Days-4-Nights", null: false
+    t.integer "price", default: 0, null: false
+    t.float "average_rating", default: 0.0, null: false
+    t.integer "orders_count", default: 0, null: false
+    t.integer "itineraries_count", default: 0, null: false
+    t.boolean "published", default: false
+    t.boolean "approved", default: false
+    t.index ["slug"], name: "index_trips_on_slug", unique: true
+    t.index ["user_id"], name: "index_trips_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "slug"
+    t.integer "trips_count", default: 0, null: false
+    t.integer "orders_count", default: 0, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "itineraries", "trips"
+  add_foreign_key "orders", "trips"
+  add_foreign_key "orders", "users"
+  add_foreign_key "trips", "users"
+
+```
+
+##  The way tasks are allocated and tracked in my project :guitar:
+[Trello Board](https://trello.com/b/VdF0mFNz/t2a2-travel-fun-ror-marketplace-project)
+
+## Set Up Travel Fun :video_game:
+
+- Make a fork of this repo
+- Clone your fork to your local development environment
+- Install dependencies bundle install
+- Check node dependencies yarn install --check-files
+- Run rails s and check that everything is working (you should see welcome to rails!)
+- Ruby version: 2.7.5
+- ROR version: 6.1.4.7
+- Yarn version: 1.22.17
+- Node version: v14.18.2
