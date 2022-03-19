@@ -54,18 +54,145 @@ Admin and operators can create travel products, also can update or delete produc
 include PublicActivity::Model in itinerary , trip and user model, to allow admin role account track operation history, incluse user account create, which operator did what to travel plan etc. 
 
 ### Sitemap :scroll:
-![sitemap](docs/sitemap/Travel_Fun_Sitemap.png)
+![sitemap](./docs/sitemap/Travel_Fun_Sitemap.png)
 
 ### Screenshots :smiley_cat:
 
 <details>
-  <summary>Click Me to expand!</summary>
+  <summary>Click Me to expand! - Landing Page</summary>
 
-  - #### landing page no log in
+- #### landing page no log in
   ![landing page](docs/Screenshots/landing_page_no_log_in/0_landing_page_no_log_in.jpeg)
-  - #### signup page
+- signup page
   ![signup page](docs/Screenshots/landing_page_no_log_in/1_signup_page.png)
-  - #### login page
+- login page
   ![login page](docs/Screenshots/landing_page_no_log_in/2_login_page.png)
+
+</details>
+
+<details>
+    <summary>Click Me to expand! - Client User</summary>
+
+- #### Client account log in
+  - #### Clinet user landing page
+  ![client user 01](docs/Screenshots/Client_account_login/Clinet_user_landing_page_01.png)
+  - #### Client user trip list page
+  ![client user 02](docs/Screenshots/Client_account_login/Client_user_trips_page.png)
+  - #### Client user travel plan brought trips page
+  ![client user 03](docs/Screenshots/Client_account_login/Client_user_travel_plan_brought_trips_page.png)
+  - #### Client user travel plan pending review page
+  ![client user 04](docs/Screenshots/Client_account_login/Client_user_travel_plan_pending_review_page.png)
+
+</details>
+
+<details>
+    <summary>Click Me to expand! - Operator User</summary>
+
+- #### Operator account log in
+  - #### Operator user landing page
+  ![operator user 01](docs/Screenshots/Operator_account_login/Operator_user_landing_page.png)
+  - #### Operator user trip list page
+  ![operator user 02](docs/Screenshots/Operator_account_login/Operator_user_trips_page.png)
+  - #### Operator user create trip page
+  ![operator user 03](docs/Screenshots/Operator_account_login/Operator_user_create_trip_page.png)
+  - #### Operator user created travel page
+  ![operator user 04](docs/Screenshots/Operator_account_login/Operator_user_created_travels_page.png)
+  - #### Operator user my client page
+  ![operator user 05](docs/Screenshots/Operator_account_login/Operator_user_my_clients_page.png)
+
+</details>
+
+<details>
+    <summary>Click Me to expand! - Admin User</summary>
+
+- #### Admin account log in
+  - #### Admin user landing page
+  ![admin user 01](docs/Screenshots/Admin_account_log_in/Admin_user_landing_page.png)
+  - #### Admin user trip list page
+  ![admin user 02](docs/Screenshots/Admin_account_log_in/Admin_user_trips_page.png)
+  - #### Admin user trip pending page
+  ![admin user 03](docs/Screenshots/Admin_account_log_in/Admin_user_trip_pending_list.png)
+  - #### Admin user all orders page
+  ![admin user 04](docs/Screenshots/Admin_account_log_in/Admin_user_all_orders_page.png)
+  - #### Admin user users community page
+  ![admin user 05](docs/Screenshots/Admin_account_log_in/Admin_user_users_community_page.png)
+  - #### Admin user operation history page
+  ![admin user 06](docs/Screenshots/Admin_account_log_in/Admin_user_operation_page.png)
+  - #### Admin user analytics page
+  ![admin user 07](docs/Screenshots/Admin_account_log_in/Admin_user_analytics_page.png)
+  - #### Admin user create new trip page
+  ![admin user 08](docs/Screenshots/Admin_account_log_in/Admin_user_create_new_trip_page.png)
+  - #### Admin user created travel page
+  ![operator user 09](docs/Screenshots/Admin_account_log_in/Admin_user_created_trips_page.png)
+  - #### Admin user my client page
+  ![admin user 10](docs/Screenshots/Admin_account_log_in/Admin_user_my_clients_page.png)
+
+</details>
+
+<details>
+    <summary>Click Me to expand! - Accounting setting page</summary>
+
+![account setting](docs/Screenshots/accounting_setting_page.png)
+
+</details>
+
+### Target audience :gem:
+  - Travel company that want to find a platform which can not only save operator working time and automatically display itinerary to the client, then help them place an order faster, but also help for company management. 
+  - People who want to find a suitable travel plan
+  
+### Tech stack :star:
+<details>
+    <summary> Tech Stack List:</summary>
+
+- HTML5
+- SCSS
+- Font Awesome
+- Bootstrap
+- JavaScript
+- jQuery
+- Ruby
+- Ruby on Rails
+- PostgreSQL
+- Balsamiq-Wireframes
+- Lucidchart
+- Heroku 
+- Canva
+- Postman
+- AWS S3
+- AWS IAM
   
 </details>
+
+## User stories :bookmark_tabs:
+
+#### Users without login can view: 
+- the user does not have to be signed in to view popular trips list, top-rated trips list and new trips list
+ 
+#### Users need to log in then can have more authorities   
+ - ##### When user account is client role account, then he can:
+    - Buy travel plan
+    - See what travel plan he bought
+    - Write review for their own travel plan 
+    - Users can search for trips
+ - ##### When user account is operator role account, then he can:
+    - Create travel plan, write content and upload image, also can add itinerary for travel plan
+    - Edit their own travel plan 
+    - Delete travel plan
+    - Can see who brought their travel plan
+    - Can see analytics for their created travel plan
+ - ##### When user account is admin role account, then he can:
+    - Admin can do what client role do
+    - Admin can do what operator can do
+    - Admin can check and approve all travel plans
+    - Admin can see all orders
+    - Admin can check each registered account status, edit any account roles
+    - Admin can check each operation records for travel plan
+    - Admin can check analytics for users created, orders created and so on
+
+#### Users can log in and out
+
+## Wireframes :clipboard:
+[please find my wireframes in this link](docs/Wireframes/Wireframes-Travel-Fun.bmpr)
+
+## Entity Relationship Diagram (ERD) :pushpin:
+![erd](docs/ERD/Travel%20Fun%20ERD.png)
